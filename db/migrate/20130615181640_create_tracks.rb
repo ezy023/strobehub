@@ -6,7 +6,7 @@ class CreateTracks < ActiveRecord::Migration
       t.decimal     :delay
       t.decimal     :offset
       t.decimal     :duration
-      t.decimal     :volumne
+      t.decimal     :volume
       t.decimal     :track_length
 
       t.timestamps
