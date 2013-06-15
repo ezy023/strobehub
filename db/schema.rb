@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130615181708) do
     t.decimal  "delay"
     t.decimal  "offset"
     t.decimal  "duration"
-    t.decimal  "volumne"
+    t.decimal  "volume"
     t.decimal  "track_length"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
