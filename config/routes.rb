@@ -1,7 +1,7 @@
 Strobehub::Application.routes.draw do
   resources   :users
   resources   :tracks
-  resources   :respositories do
+  resources   :repositories do
     resources :versions
   end
 

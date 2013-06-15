@@ -8,5 +8,4 @@ class Repository < ActiveRecord::Base
   
   validates :name, :description, :creator_id, :presence => true
 
-
 end

@@ -1,0 +1,17 @@
+<h5> STROBE STROBE STROBE </h5>
+
+<h4>User stuff</h4>
+<%= link_to "Create an account", new_user_path %> <br>
+<%= link_to "View all users", users_path %> <br>
+<%= link_to "View profile page of a user of ID=1", '/users/1' %> <br>
+
+<h4> Repo stuff </h4>
+<%= link_to "Make a new repo", new_repository_path %> <br>
+<%= link_to "View all repos", repositories_path %> <br>
+<%= link_to "View a repo", '/repositories/1' %> <br>
+<%= link_to "Edit a repo", '/repositories/1/edit' %>
+
+<h4> Version stuff </h4>
+<%= link_to "View all versions of a repo", 'repositories/1/versions' %> <br>
+<%= link_to "View a version", '/repositories/1/versions/1' %> <br>
+<%= link_to "Edit a version", '/repositories/1/versions/1/edit' %>
