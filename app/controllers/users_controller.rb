@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		# user profile page
+		@user_repos = Repository.where(:creator_id => params[:id])
 	end
 
 	def edit

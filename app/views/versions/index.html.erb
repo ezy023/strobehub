@@ -1,1 +1,9 @@
 <h5> display all the versions belonging to an individual repo </h5>
+
+<% if @versions %>
+	<ul>
+	<% @versions.each_with_index do |version, i| %>
+	<li><%= link_to "Version #{i + 1} by #{version.user.username}", repository_version_path(@repository, version) %></li>
+	<% end %>
+	</ul>
+<% end %>

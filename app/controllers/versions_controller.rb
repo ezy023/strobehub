@@ -2,7 +2,8 @@ class VersionsController < ApplicationController
 	skip_before_filter	:require_login, :only => [:index, :show]
 	
 	def index
-		# shows all the versions belonging to a repo
+		@repository = Repository.find(params[:repository_id])
+		@versions = @repository.versions
 	end
 
 	def create
@@ -10,7 +11,8 @@ class VersionsController < ApplicationController
 	end
 
 	def show
-		# shows the version
+		@repository = Repository.find(params[:repository_id])
+		@version = Version.find(params[:id])
 	end
 
 	def edit
