@@ -5,7 +5,7 @@ class AudioSourcesController < ApplicationController
   end
 
   def create
-    @audion_source = AudioSource.create(params[:audio])
+    @audio_source = AudioSource.create(params[:audio])
   end
 
   def destroy
