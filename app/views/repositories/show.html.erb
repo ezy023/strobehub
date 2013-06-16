@@ -1,1 +1,38 @@
-<h5> This is an individual repo </h5>
+<div id="container">
+  <ul id="track_list">
+    <li class='track_row'>
+      <div class='control_panel'>
+        <div id='strobe'>Strobe</div>
+        <a href="#" id='add_track'>+</a>
+        <a href="#" id="play_all">></a>
+        <a href="#" id="stop_all">[ ]</a>
+      </div>
+    </li>
+  </ul>
+
+</div>
+
+<script type="text/template" class="template">
+  <li class="track_row" id="track_{{= rc.index }}" data-index='{{= rc.index}}'>
+    <div class="track_controls">
+      {{=rc.track.url}}
+      <br>
+      <a class='resume_track' href='#'>></a>
+      <a class='stop_track' href='#'>stop</a>
+    </div>
+    <div class="track_line">
+      <div class="audio_clip" style="width:{{=pixelize(rc.track.duration)}}px;left:{{=pixelize(rc.track.delay)}}px">
+      </div>
+      <div class="progress_bar"></div>
+    </div>
+    <div class="track_info">
+      delay: {{= Math.floor(rc.track.delay*1000)/1000 }}
+      <br>
+      offset: {{= Math.floor(rc.track.offset*1000)/1000 }}
+      <br>
+      duration: {{= Math.floor(rc.track.duration*1000)/1000 }}
+      <br>
+      original length: {{= Math.floor(rc.track.trackLength*1000)/1000}}
+    </div>
+  </li>
+</script>
