@@ -1,5 +1,11 @@
+@font-face{
+  font-family:'DS-Digital';
+  src:url('DS-DIGI.TTF');
+}
+
 body{
-  font-family:Helvetica Neue;
+  font-family:'DS-Digital';
+
 }
 
 a {
