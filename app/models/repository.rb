@@ -1,6 +1,6 @@
 class Repository < ActiveRecord::Base
 
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :creator_id
 
   has_many :versions
   has_many :users, :through => :versions
