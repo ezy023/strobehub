@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'pg'
+gem 'carrierwave'
 
 
 # Gems used only for assets and not required
@@ -23,6 +24,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
