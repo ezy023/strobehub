@@ -1,1 +1,7 @@
 <h5> show all the awesome repos, probably sorted by category or something </h5>
+
+<ul>
+<% Repository.all.each do |repo| %>
+<li><%= link_to "#{repo.name}", repo %></li>
+<% end %>
+</ul>
