@@ -22,9 +22,10 @@ $(document).ready(function() {
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mouseup', '.audio_clip', updateDelay);
     $('#track_list').click(clickRouter)
-    $('#add_track').click( addTrack );
+    $('.add_track').click( addTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
+    $('#save_version').submit( saveVersion );
 
     function clickRouter(e){
       switch ($(e.target).attr('class')){
@@ -152,6 +153,16 @@ $(document).ready(function() {
       };
     }
 
+    function saveVersion(e) {
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: $(this).find('form').attr('action'),
+        dataType: 'json',
+        contentType: 'application/json',
+        data: playlist.toJSONString()
+      });
+    }
   }
   UserInterface();
 });

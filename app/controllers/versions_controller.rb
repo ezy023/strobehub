@@ -16,11 +16,13 @@ class VersionsController < ApplicationController
 	end
 
 	def edit
-		# allows version creator to edit the version
+		@repo_id = params[:repository_id]
+		@version_id = params[:id]
 	end
 
 	def update
-		# updates state of the version (tracks added, etc.)
+		Version.update_version(params[:tracks], params[:id])
+		render 'versions/edit'
 	end
 
 	def destroy

@@ -14,5 +14,4 @@ class StaticPagesController < ApplicationController
 		# clears session user_id
 		# redirects to home
 	end
-
 end
