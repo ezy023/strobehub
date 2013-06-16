@@ -40,8 +40,30 @@ a {
   font-weight:900;
 }
 
+#global_info {
+  border: 3px solid #04A3FE;
+  padding-left: 10px;
+  color: #04A3FE;
+  font-size: 40px;
+  width: 200px;
+  height: 40px;
+  margin-top:7px;
+  margin-left: 20px;
+}
+
+#global_info .label {
+  font-size:20px;
+  margin-top:10px;
+}
+
+#add_track{
+  float:right;
+  margin-right:10px;
+  font-size: 40px;
+
+}
 #stop_all {
-  font-size: 35px;
+  font-size: 40px;
 }
 
 .progress_bar {
@@ -92,6 +114,6 @@ a {
 }
 
 .control_panel {
-  width:1000px;
+  width:900px;
   height:160px;
 }

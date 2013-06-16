@@ -1,22 +1,22 @@
 function pixelize(seconds){
-  return Math.floor(seconds / playlist.longestDuration * 600)
+  return Math.floor(seconds / playlist.longestDuration * 600);
 }
 
 function secondize(pixels){
-  return pixels / 600 * playlist.longestDuration
+  return pixels / 600 * playlist.longestDuration;
 }
-var playlist = new TrackList();
+var context = new webkitAudioContext();
+var playlist = new TrackList(context);
+
 $(document).ready(function() {
-
-
   function UserInterface() {
     var CKEY = 67;
     var SKEY = 83;
     var selectStart;
     var selectEnd;
-    var context = new webkitAudioContext();
     var selectedTrack;
-    setupTemplate();
+    setupTemplate()
+    var trackView = new TrackView();
 
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
@@ -25,6 +25,7 @@ $(document).ready(function() {
     $('#add_track').click( addTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
+
 
     function clickRouter(e){
       switch ($(e.target).attr('class')){
@@ -59,8 +60,9 @@ $(document).ready(function() {
     function addTrack() {
       var url = '/james_bond.wav';
       // TODO dynamically get the url via a menu of options
-      var track = new Track({url:url, context:context});
-      var trackView = new TrackView(track);
+      var maxId = _.max(this.tracks,function(track){return track.id;});
+      var id = Math.max(maxId, 0);
+      var track = new Track({id:id, url:url, context:context});
       playlist.addTrack(track);
     }
 
@@ -90,7 +92,7 @@ $(document).ready(function() {
     }
 
     function stopTrack(target) {
-      var playPauseButton = target.parent().children('.pause_track')
+      var playPauseButton = target.parent().children('.pause_track');
       playPauseButton.html('>');
       playPauseButton.removeClass();
       playPauseButton.addClass('resume_track');
@@ -99,7 +101,7 @@ $(document).ready(function() {
     }
 
     function setSelectedTrack(e) {
-      var index = $(e.target.parentElement.parentElement).data('index');
+      var index = $(e.target).closest('li').data('index');
       selectedTrack = playlist.tracks[index];
     }
 
@@ -144,11 +146,11 @@ $(document).ready(function() {
       selectedTrack.setDuration(secondize(Math.abs(selectEnd - selectStart)));
     }
 
-    function setupTemplate(){
+    function setupTemplate() {
       _.templateSettings = {
         interpolate: /\{\{\=(.+?)\}\}/g,
         evaluate: /\{\{(.+?)\}\}/g,
-        variable: "rc"
+        variable: "obj"
       };
     }
 
