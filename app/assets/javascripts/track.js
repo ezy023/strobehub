@@ -3,6 +3,7 @@
 function Track(options) {
   var defaults = {delay:0, offset:0};
   options = _.extend(defaults, options);
+  this.id = options.id;
   this.url = options.url;
   this.context = options.context;
   this.speakers = this.context.destination;
@@ -94,7 +95,7 @@ function Track(options) {
   };
 
   this.toJSON = function(){
-    return {url:this.url, delay:this.delay, offset:this.offset, duration:this.duration};
+    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration};
   };
 
   BufferLoader.load(this.context, this.url, this.bufferLoaded);

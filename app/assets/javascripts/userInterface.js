@@ -17,6 +17,13 @@ $(document).ready(function() {
     var selectedTrack;
     setupTemplate();
 
+    var url = window.location.pathname + ".json";
+    $.getJSON(url, function(data) {
+      $.each(data, function(index, track) {
+        addTrack(track.id, track.url);
+      });
+    });
+
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mouseup', '.audio_clip', updateDelay);
@@ -56,10 +63,11 @@ $(document).ready(function() {
       }
     }
 
-    function addTrack() {
-      var url = '/james_bond.wav';
+    function addTrack(id, url) {
+      var id = id;
+      var url = url;
       // TODO dynamically get the url via a menu of options
-      var track = new Track({url:url, context:context});
+      var track = new Track({id:id, url:url, context:context});
       var trackView = new TrackView(track);
       playlist.addTrack(track);
     }

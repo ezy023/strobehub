@@ -14,8 +14,8 @@
 	  <h1><a href="/" class='add_track'>DROP A BEAT	</a></h1>
 	  <%= form_tag({ :action => :create,:controller => :tracks}, :multipart => true) do %>
   		<%= file_field_tag :file %>
-  		<%= hidden_field_tag(:repository_id, @repo_id) %>
-  		<%= hidden_field_tag(:version_id, @version_id) %>  		
+  		<%= hidden_field_tag(:repository_id, @repository.id) %>
+  		<%= hidden_field_tag(:version_id, @version.id) %>  		
   		<%= submit_tag("Upload") %>
 		<% end %>
 	</div>
@@ -23,9 +23,10 @@
 	<div id="save_version">
 		<%= form_for(	:version, 
 									:html => { :method => "put" }, 
-									:url => "/repositories/#{@repo_id}/versions/#{@version_id}") do |f|  %>
+									:url => "/repositories/#{@repository.id}/versions/#{@version.id}") do |f|  %>
 			<%= f.submit "SAVE IT" %>
 		<% end %>
+  </div>
 </div>
 
 
