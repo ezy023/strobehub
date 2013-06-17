@@ -8,7 +8,6 @@ class VersionsController < ApplicationController
 
 	def new
 		@version = Version.new
-		@test = 'test'
 	end
 
 	def create
