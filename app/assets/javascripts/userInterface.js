@@ -15,13 +15,13 @@ $(document).ready(function() {
     var selectStart;
     var selectEnd;
     var selectedTrack;
-    setupTemplate()
+    setupTemplate();
     var trackView = new TrackView();
 
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mouseup', '.audio_clip', updateDelay);
-    $('#track_list').click(clickRouter)
+    $('#track_list').click(clickRouter);
     $('#add_track').click( addTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
