@@ -42,8 +42,6 @@ function TrackList(context, savedJSON){
     }
   };
 
-
-
   this.resumeAll = function(){
     for (i in this.tracks) {
       this.tracks[i].resume(time);

@@ -60,9 +60,9 @@ $(document).ready(function() {
     function addTrack() {
       var url = '/james_bond.wav';
       // TODO dynamically get the url via a menu of options
-      var maxId = _.max(this.tracks,function(track){return track.id;});
-      var id = Math.max(maxId, 0);
-      var track = new Track({id:id, url:url, context:context});
+      var lastTrack = _.max(playlist.tracks,function(track){return track.index;});
+      var index = _.max([lastTrack.index + 1, 0]);
+      var track = new Track({index:index, url:url, context:context});
       playlist.addTrack(track);
     }
 
@@ -79,16 +79,16 @@ $(document).ready(function() {
       target.html('>');
       target.removeClass();
       target.addClass('resume_track');
-      var id = target.parent().parent().data('index');
-      playlist.tracks[id].pause();
+      var index = target.parent().parent().data('index');
+      playlist.tracks[index].pause();
     }
 
     function resumeTrack(target) {
       target.html('||');
       target.removeClass();
       target.addClass('pause_track');
-      var id = target.parent().parent().data('index');
-      playlist.tracks[id].resume();
+      var index = target.parent().parent().data('index');
+      playlist.tracks[index].resume();
     }
 
     function stopTrack(target) {
@@ -96,8 +96,8 @@ $(document).ready(function() {
       playPauseButton.html('>');
       playPauseButton.removeClass();
       playPauseButton.addClass('resume_track');
-      var id = target.parent().parent().data('index');
-      playlist.tracks[id].stop();
+      var index = target.parent().parent().data('index');
+      playlist.tracks[index].stop();
     }
 
     function setSelectedTrack(e) {
