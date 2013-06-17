@@ -1,16 +1,22 @@
 class RepositoriesController < ApplicationController
 	skip_before_filter :require_login, :only => :index
-
+	
 	def index
 		#show all repos
 	end
 
 	def new
-		#make a new repo
+		@repository = Repository.new
 	end
 
 	def create
-		# stuff goes here later
+		@repository = Repository.new(params[:repository], :creator => current_user)
+		if @repository.save
+			flash[:success] = "You just created a new repository"
+			redirect_to new_repository_path
+		else
+			flash[:error] = "Please make sure to complete all fields"
+		end
 	end
 
 	def show
