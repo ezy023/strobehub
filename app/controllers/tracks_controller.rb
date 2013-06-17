@@ -1,13 +1,14 @@
 class TracksController < ApplicationController
 
 	def create
-		repository = Repository.find(params[:repository_id])
-		version = Version.find(params[:version_id])
-    audio_source = AudioSource.new(:file => params[:file])
-    if audio_source.save
+    @audio_source = AudioSource.new(:file => params[:song_file])
+    if @audio_source.save
       flash[:success] = "File Uploaded"
-      Track.create(:url => audio_source.file.url, :version_id => version.id)
-      redirect_to edit_repository_version_path(repository, version)
+      @audio_source.file.url
+      new_track = Track.new(:url => @audio_source.file.url)
+      respond_to do |format|
+        format.json { render :json => @audio_source.file.url }
+      end
     else
       flash[:error] = "No good"
       redirect_to :back

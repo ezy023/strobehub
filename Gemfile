@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'pg'
 gem 'carrierwave'
 gem 'json'
+gem 'gravatar_image_tag'
 
 
 # Gems used only for assets and not required

@@ -1,0 +1,25 @@
+  <label>Created Repos</label>
+  <ul>
+    <% if !@user_repos.empty? %>
+      <% @user_repos.each do |repo| %>
+        <li><%= link_to repo.name, repo %></li>
+      <% end %>
+    <% else %>
+      <li>You have not created any repositories, click here to get started!</li>
+      <li><%=link_to "New Repository", new_repository_path %></li>
+    <% end %>
+</ul>
+
+<br>
+
+  <label>Forked Repos</label>
+  <ul>
+    <% if !@forked_repos.empty? %>
+      <% @forked_repos.each do |repo| %>
+        <li><%= link_to repo.name, repo %></li>
+      <% end %>
+    <% else %>
+      <li>You have not forked any repositories, click here to get started! </li>
+      <li><%=link_to  "All Repositories", repositories_path%></li>
+    <% end %>
+  </ul>

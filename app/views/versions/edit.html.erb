@@ -30,10 +30,8 @@
 
   <div id="dropzone">
     <h1><a href="/" class='add_track'>DROP A BEAT </a></h1>
-    <%= form_tag({ :action => :create,:controller => :tracks}, :multipart => true) do %>
+    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
       <%= file_field_tag :file %>
-      <%= hidden_field_tag(:repository_id, @repository.id) %>
-      <%= hidden_field_tag(:version_id, @version.id) %>     
       <%= submit_tag("Upload") %>
     <% end %>
   </div>
@@ -74,4 +72,4 @@
   </li>
 </script>
 
-</div>
+
