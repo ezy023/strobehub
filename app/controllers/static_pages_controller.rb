@@ -11,12 +11,12 @@ class StaticPagesController < ApplicationController
 	def login
 		user = User.find_by_username(params[:static_pages][:username])
 		if user && user.authenticate(params[:static_pages][:password])
-			session[:user_id] = user.id 
+			session[:user_id] = user.id
 			flash[:success] = "You successfully logged in"
 			redirect_to user_path(user)
 		else
 			flash[:error] = "Unsuccessful login attempt"
-			render login_path
+			redirect_to login_path
 		end
 	end
 

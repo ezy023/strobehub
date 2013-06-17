@@ -7,25 +7,25 @@ FactoryGirl.define do
     username 'UserName'
   end
 
-  factory :AudioSource do
-    type 'type'
-    filename 'filename'
-    title 'title'
-    data 'data'
+  factory :audiosource do
+    file 'file'
   end
 
-  factory :Repository do
+  factory :repository do
     name 'name'
     description 'description'
   end
 
-   factory :Track do
+   factory :track do
     url 'url'
     delay 1.0
     offset 0.1
     duration 1.0
     volume 0.1
     track_length 1.0
+  end
+
+  factory :version do
   end
 
 end
