@@ -1,9 +1,4 @@
 <h5> user profile page, shows all user repos </h5>
 
-<% if @user_repos %>
-	<ul>
-		<% @user_repos.each do |repo| %>
-			<li><%= link_to "#{repo.name}", repo %></li>
-		<% end %>
-	</ul>
-<% end %>
+<%= render partial: "user_profile" %>
+<%= render partial: "repo_display" %>

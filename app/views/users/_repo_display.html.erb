@@ -1,0 +1,17 @@
+<% if @user_repos %>
+  <label>Created Repos</label>
+  <ul>
+    <% @user_repos.each do |repo| %>
+      <li><%= link_to "#{repo.name}", repo %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @forked_repos %>
+  <label>Forked Repos</label>
+  <ul>
+    <% @forked_repos.each do |repo| %>
+      <li><%= link_to "#{repo.name}", repo %></li>
+    <% end %>
+  </ul>
+<% end %>
