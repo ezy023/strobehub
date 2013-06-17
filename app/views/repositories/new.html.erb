@@ -1,1 +1,6 @@
 <h5> here is the form to make a new repository </h5>
+<% if current_user %>
+	<%= render "repository_form" %>
+<% else %>
+	<h6>Please login or signup to create a new repository</h6>
+<%end%>

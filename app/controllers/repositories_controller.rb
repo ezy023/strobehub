@@ -6,11 +6,17 @@ class RepositoriesController < ApplicationController
 	end
 
 	def new
-		#make a new repo
+		@repository = Repository.new
 	end
 
 	def create
-		# stuff goes here later
+		@repository = Repository.new(params[:repository], :creator_id => current_user.id)
+		if @repository.save
+			flash[:success] = "You just created a new repository"
+			redirect_to repository_versions_path(@repository)
+		else
+			flash[:error] = "Please make sure to complete all fields"
+		end
 	end
 
 	def show
