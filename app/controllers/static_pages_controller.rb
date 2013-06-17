@@ -5,13 +5,24 @@ class StaticPagesController < ApplicationController
 		#home page
 	end
 
+	def new
+	end
+
 	def login
-		# forms to log in or create a new account
-		# sets session user_id
+		user = User.find_by_username(params[:static_pages][:username])
+		if user && user.authenticate(params[:static_pages][:password])
+			session[:user_id] = user.id 
+			flash[:success] = "You successfully logged in"
+			redirect_to user_path(user)
+		else
+			flash[:error] = "Unsuccessful login attempt"
+			render login_path
+		end
 	end
 
 	def logout
-		# clears session user_id
-		# redirects to home
+		session.clear
+		flash[:success] = "You successfully logged out"
+		redirect_to :root
 	end
 end

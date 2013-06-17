@@ -3,7 +3,6 @@ function TrackList(context, savedJSON){
   this.tracks = [];
   this.longestDuration = 10;
 
-
   this.addTrack = function(track) {
     this.tracks.push(track);
   };
@@ -42,8 +41,6 @@ function TrackList(context, savedJSON){
       this.tracks[i].stop();
     }
   };
-
-
 
   this.resumeAll = function(){
     for (i in this.tracks) {
