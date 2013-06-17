@@ -23,7 +23,7 @@ window.addEventListener('load', function(){
       entry = files[i];
       //if(entry instanceof File){ console.log("ITS A FILE"); console.log(entry.name);  } 
       formData.append("song_file", entry);
-      xhr.open("POST", "http://localhost:3000/tracks", true);
+      xhr.open("POST", "http://localhost:3000/tracks", false);
       xhr.onload = function(evt){
         var songs = document.getElementById('songs');
         var song_div = document.createElement('audio');
@@ -37,7 +37,6 @@ window.addEventListener('load', function(){
         console.log(song_div);
       }
       xhr.send(formData);
-      debugger;
     }
     console.log("THE DROP");
   }
