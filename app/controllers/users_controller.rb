@@ -1,19 +1,28 @@
-class UsersController < ApplicationController
+ class UsersController < ApplicationController
 	skip_before_filter :require_login, :only => [:index, :new, :show]
 
 	def index
-		#show all the users? something something
+		@users = User.all
 	end
 
 	def new
-		# form to create an account
+		@user = User.new
 	end
 
 	def create
-		# creates a new user account
+		@user = User.new(params[:user])
+		if @user.save
+			session[:user_id] = @user.id
+			flash[:success] = "You have signed up successfully"
+			redirect_to user_path(@user)
+		else
+			flash[:error] = "You had errors in your signup"
+			redirect_to new_user_path
+		end
 	end
 
 	def show
+		@user = User.find(params[:id])
 		@user_repos = Repository.where(:creator_id => params[:id])
 	end
 

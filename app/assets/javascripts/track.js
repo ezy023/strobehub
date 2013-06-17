@@ -3,6 +3,8 @@
 function Track(options) {
   var defaults = {delay:0, offset:0};
   options = _.extend(defaults, options);
+  this.id = options.id; //only used to identify the track in the view, for ui purposes
+  this.index = options.index;
   this.url = options.url;
   this.context = options.context;
   this.speakers = this.context.destination;
@@ -28,7 +30,7 @@ function Track(options) {
   };
 
   this.play = function(delay, offset, duration){
-    if (typeof(this.source) !== 'undefined'){ this.source.stop(0) };
+    if (typeof(this.source) !== 'undefined'){ this.source.stop(0); }
     this.source = this.setUpBuffer();
     this.connectNodes(this.source);
     this.source.start(this.context.currentTime + delay, offset, duration);
@@ -60,13 +62,12 @@ function Track(options) {
   this.stop = function() {
     this.pauseTime = this.startTime;
     this.source.stop(0);
-    $.Topic("Track:pause").publish(this);
+    $.Topic("Track:stop").publish(this);
   };
 
   this.resume = function(){
     var startTime = Math.max((this.pauseTime - this.startTime),0);
     this.playAt(startTime);
-
   };
 
   this.bufferLoaded = function(buffer) {
@@ -94,7 +95,7 @@ function Track(options) {
   };
 
   this.toJSON = function(){
-    return {url:this.url, delay:this.delay, offset:this.offset, duration:this.duration};
+    return {url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
   };
 
   BufferLoader.load(this.context, this.url, this.bufferLoaded);
