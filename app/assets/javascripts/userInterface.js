@@ -22,7 +22,9 @@ $(document).ready(function() {
     var url = window.location.pathname + ".json";
     $.getJSON(url, function(data) {
       $.each(data, function(index, track) {
-        addTrack(track.id, track.url);
+        addTrack(track.id, track.url, track.offset, track.delay, track.duration);
+        // addTrack(track.id, track.url);
+
       });
     });
 
@@ -30,7 +32,7 @@ $(document).ready(function() {
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mouseup', '.audio_clip', updateDelay);
     $('#track_list').click(clickRouter)
-    $('.add_track').click( addTrack );
+    $('#add_track').click( addTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
     $('#save_version').submit( saveVersion );
@@ -66,13 +68,21 @@ $(document).ready(function() {
       }
     }
 
-    function addTrack(id, url) {
+    function addTrack(id, url, offset, delay, duration) {
+    // function addTrack(id, url) {
+
+      // var id = 7;
       var id = id;
       var url = url;
+      // var url = '/uploads/audio_source/file/2/1_giants_win_x.wav';
+      var offset = offset;
+      var duration = duration;
+      var delay = delay;
       // TODO dynamically get the url via a menu of options
       var lastTrack = _.max(playlist.tracks,function(track){return track.index;});
       var index = _.max([lastTrack.index + 1, 0]);
-      var track = new Track({id:id, index:index, url:url, context:context});
+      var track = new Track({id:id, index:index, url:url, context:context, delay:delay, duration:duration});
+      // var track = new Track({id:id, index:index, url:url, context:context});        
       playlist.addTrack(track);
     }
 

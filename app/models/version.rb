@@ -8,9 +8,9 @@ class Version < ActiveRecord::Base
   validates :user_id, :repository_id, :presence => true  
 
   def self.update_version(tracks, version_id)
-    # we need ALL the attributes of the track passed in via the JSON string
+    puts "hello"
   	tracks.each do |track|
-			Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => 7.8, :version_id => version_id)
+			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
 		end
   end
 

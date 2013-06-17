@@ -23,13 +23,15 @@ class VersionsController < ApplicationController
 		@tracks = @version.tracks
 		respond_to do |format|
 			format.html
-			format.json { render json: @tracks.to_json(:only => [:id, :url]) }
+			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay, ]) }
 		end
 	end
 
 	def update
 		Version.update_version(params[:tracks], params[:id])
-		render 'versions/edit'
+		respond_to do |format|
+			format.json { render :json => "Saved Succesfully" }
+		end
 	end
 
 	def destroy
