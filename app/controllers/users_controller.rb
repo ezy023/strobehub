@@ -17,7 +17,7 @@
 			redirect_to user_path(@user)
 		else
 			flash[:error] = "You had errors in your signup"
-			redirect_to '/'
+			redirect_to new_user_path
 		end
 	end
 

@@ -1,4 +1,6 @@
 Strobehub::Application.routes.draw do
+  root :to => 'static_pages#index'
+  
   resources   :users
   resources   :tracks
   resources   :repositories do

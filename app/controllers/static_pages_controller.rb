@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
 	def logout
 		session.clear
 		flash[:success] = "You successfully logged out"
-		redirect_to '/'
+		redirect_to :root
 	end
 
 end
