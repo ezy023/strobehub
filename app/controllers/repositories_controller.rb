@@ -14,7 +14,7 @@ class RepositoriesController < ApplicationController
 	end
 
 	def show
-		# show an individual repo
+		redirect_to repository_versions_path(Repository.find(params[:id]))
 	end
 
 	def edit

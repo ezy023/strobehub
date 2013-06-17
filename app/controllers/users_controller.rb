@@ -23,6 +23,7 @@
 
 	def show
 		@user = User.find(params[:id])
+		@user_repos = Repository.where(:creator_id => params[:id])
 	end
 
 	def edit

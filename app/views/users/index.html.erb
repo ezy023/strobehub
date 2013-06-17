@@ -1,1 +1,7 @@
 <h5> show all the users! feature users by project or something, whatevs </h5>
+
+<ul>
+<% User.all.each do |user| %>
+<li><%= link_to "#{user.username}", user %></li>
+<% end %>
+</ul>

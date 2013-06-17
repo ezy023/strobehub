@@ -1,7 +1,14 @@
 class TracksController < ApplicationController
 
 	def create
-		# internal logic to create a new track object
+    @audio_source = AudioSource.new(:file => params[:file])
+    if @audio_source.save
+      flash[:success] = "File Uploaded"
+      render "versions/edit"
+    else
+      flash[:error] = "No good"
+      redirect_to :back
+    end
 	end
 
 	def update
