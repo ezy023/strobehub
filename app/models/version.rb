@@ -10,7 +10,11 @@ class Version < ActiveRecord::Base
   def self.update_version(tracks, version_id)
     puts "hello"
   	tracks.each do |track|
-			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
+      if track["id"]
+  			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
+      else
+        Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
+      end
 		end
   end
 

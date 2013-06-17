@@ -22,9 +22,7 @@ $(document).ready(function() {
     var url = window.location.pathname + ".json";
     $.getJSON(url, function(data) {
       $.each(data, function(index, track) {
-        addTrack(track.id, track.url, track.offset, track.delay, track.duration);
-        // addTrack(track.id, track.url);
-
+        loadTrack(track.id, track.url, track.offset, track.delay, track.duration);
       });
     });
 
@@ -32,7 +30,7 @@ $(document).ready(function() {
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mouseup', '.audio_clip', updateDelay);
     $('#track_list').click(clickRouter)
-    $('#add_track').click( addTrack );
+    $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
     $('#save_version').submit( saveVersion );
@@ -68,21 +66,67 @@ $(document).ready(function() {
       }
     }
 
-    function addTrack(id, url, offset, delay, duration) {
-    // function addTrack(id, url) {
 
-      // var id = 7;
-      var id = id;
+// START Erik's gnarly code
+  var dropzone = document.getElementById('dropzone');
+  dropzone.ondragover = function(e){
+    // var data = e.dataTransfer.mozSetData("application/x-moz-file", file, 0);
+    e.preventDefault();
+    var dt = e.dataTransfer;
+  }
+
+  dropzone.ondrop = function(e){
+    e.preventDefault();
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    var form = document.getElementById("song_upload");
+
+    var entry;
+
+    for (var i = 0; i < files.length; i++) {
+      var xhr = new XMLHttpRequest();
+      var formData = new FormData(form);
+      entry = files[i];
+      console.log(entry.name);
+      //if(entry instanceof File){ console.log("ITS A FILE"); console.log(entry.name);  }
+      formData.append("song_file", entry);
+      xhr.open("POST", "http://localhost:3000/tracks", false);
+      xhr.onload = function(evt){
+        // audioClosure(entry, i, xhr)();
+        // var con = new webkitAudioContext();
+        // var cool = new Track({url: xhr.response, context: con});
+        audioClosure(xhr)();
+        console.log(xhr.response);
+      }
+      xhr.send(formData);
+    }
+  }
+
+  function audioClosure(xhr){
+    return function(){
+      createTrack(xhr.response);
+    }
+  }
+  //END Erik's gnarly code
+
+    function createTrack(url) {
+      console.log(url);
       var url = url;
-      // var url = '/uploads/audio_source/file/2/1_giants_win_x.wav';
-      var offset = offset;
-      var duration = duration;
-      var delay = delay;
-      // TODO dynamically get the url via a menu of options
       var lastTrack = _.max(playlist.tracks,function(track){return track.index;});
       var index = _.max([lastTrack.index + 1, 0]);
-      var track = new Track({id:id, index:index, url:url, context:context, delay:delay, duration:duration});
-      // var track = new Track({id:id, index:index, url:url, context:context});        
+      var track = new Track({index:index, url:url, context:context});
+      playlist.addTrack(track);
+    }
+
+    function loadTrack(id, url, offset, delay, duration) {
+      var id = id;
+      var lastTrack = _.max(playlist.tracks,function(track){return track.index;});
+      var index = _.max([lastTrack.index + 1, 0]);
+      var url = url;
+      var offset = offset;
+      var delay = delay;
+      var duration = duration;
+      var track = new Track({id:id, index:index, url:url, context:context, offset:offset, delay:delay, duration:duration});
       playlist.addTrack(track);
     }
 

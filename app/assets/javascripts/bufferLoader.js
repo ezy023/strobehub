@@ -1,32 +1,38 @@
-var BufferLoader = {
-  load:function(context, url, callback){
-    var request = new XMLHttpRequest();
-    this.context = context;
-    this.callback = callback;
-    request.open("GET", url, true);
-    request.responseType = "arraybuffer";
-    var loader = this;
+var BufferLoader = function(context, url, callback){
+  console.log("right, here");
+  console.log(url);
 
-    request.onload = function() {
-      loader.context.decodeAudioData(request.response, loader.successCallback,loader.errorCallback);
-    };
+  var request = new XMLHttpRequest();
 
-    request.onerror = function() {
-      alert('BufferLoader: XHR error');
-    };
+  this.context = context;
+  this.callback = callback;
+  this.url = url;
+  request.open("GET", url, true);
+  request.responseType = "arraybuffer";
 
-    this.errorCallback = function(error) {
-      console.error('decodeAudioData error', error);
-    };
+  var that = this;
 
-    this.successCallback = function(buffer){
-      if (buffer) {
-        callback(buffer);
-      } else {
-        alert('error decoding file data: ' + url);
-        return;
-      }
-    };
-    request.send();
-  }
+  request.onload = function() {
+    that.context.decodeAudioData(request.response, that.successCallback, that.errorCallback);
+  };
+
+  request.onerror = function() {
+    alert('BufferLoader: XHR error');
+  };
+
+  this.errorCallback = function(error) {
+    console.error('decodeAudioData error', error);
+  };
+
+  this.successCallback = function(buffer){
+    if (buffer) {
+      console.log("Success loading buffer: " + that.url)
+      callback(buffer);
+    } else {
+      alert('error decoding file data: ' + that.url);
+      return;
+    }
+  };
+
+  request.send();
 }

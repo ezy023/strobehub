@@ -6,5 +6,4 @@ class Track < ActiveRecord::Base
 
   validates :url, :delay, :offset, :duration, :volume, :track_length, :version_id, :presence => true
 
-
 end
