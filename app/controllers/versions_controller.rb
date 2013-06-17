@@ -13,6 +13,11 @@ class VersionsController < ApplicationController
 	def show
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
+		@track = @version.tracks.first
+		# respond_to do |format|
+	 #    format.html
+	 #    format.json { render json: @track }
+	 #  end
 	end
 
 	def edit

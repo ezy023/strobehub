@@ -8,7 +8,6 @@ function secondize(pixels){
 var playlist = new TrackList();
 $(document).ready(function() {
 
-
   function UserInterface() {
     var CKEY = 67;
     var SKEY = 83;
