@@ -39,7 +39,7 @@
   <div id="save_version">
     <%= form_for( :version, 
                   :html => { :method => "put" }, 
-                  :url => "/repositories/#{@repository.id}/versions/#{@version.id}") do |f|  %>
+                  :url => repository_version_path(@repository, @version)) do |f|  %>
       <%= f.submit "SAVE IT" %>
     <% end %>
   </div>
