@@ -33,7 +33,7 @@ $(document).ready(function() {
     $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
-    $('#save_version').submit( saveVersion );
+    $('#save_version').submit( checkUser );
 
 
     function clickRouter(e){
@@ -212,14 +212,36 @@ $(document).ready(function() {
       };
     }
 
-    function saveVersion(e) {
+    function checkUser(e) {
       e.preventDefault();
+      var currentUser = $('#current_user').html();
+      var versionOwner = $('#version_owner').html();
+      if (currentUser === versionOwner) {
+        saveVersion();
+      } else if (currentUser === "") {
+        window.location.href = '/login';
+      } else {
+        sporkVersion();
+      }
+    }
+
+    function saveVersion() {
       $.ajax({
         type: "POST",
         url: $(this).find('form').attr('action'),
         dataType: 'json',
         contentType: 'application/json',
         data: playlist.toJSONString()
+      });
+    }
+
+    function sporkVersion() {
+      var url = $('#spork_version form').attr('action');
+      $.post(url, function(newPath) {
+        var repoID = newPath.repository_id;
+        var versionID = newPath.version_id;
+        var url = '/repositories/' + repoID + '/versions/' + versionID;
+        window.location.href = url;
       });
     }
   }
