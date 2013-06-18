@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: strobehub
+  database: strobehub_development
   pool: 5
 
 # Warning: The database defined as "test" will be erased and
@@ -15,11 +15,11 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: strobehub
+  database: strobehub_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: strobehub
+  database: strobehub_production
   pool: 5

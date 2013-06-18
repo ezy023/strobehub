@@ -1,32 +1,34 @@
-var BufferLoader = {
-  load:function(context, url, callback){
-    var request = new XMLHttpRequest();
-    this.context = context;
-    this.callback = callback;
-    request.open("GET", url, true);
-    request.responseType = "arraybuffer";
-    var loader = this;
+var BufferLoader = function(context, url, callback){
+  var request = new XMLHttpRequest();
 
-    request.onload = function() {
-      loader.context.decodeAudioData(request.response, loader.successCallback,loader.errorCallback);
-    };
+  this.context = context;
+  this.callback = callback;
+  this.url = url;
+  request.open("GET", url, true);
+  request.responseType = "arraybuffer";
 
-    request.onerror = function() {
-      alert('BufferLoader: XHR error');
-    };
+  var that = this;
 
-    this.errorCallback = function(error) {
-      console.error('decodeAudioData error', error);
-    };
+  request.onload = function() {
+    that.context.decodeAudioData(request.response, that.successCallback, that.errorCallback);
+  };
 
-    this.successCallback = function(buffer){
-      if (buffer) {
-        callback(buffer);
-      } else {
-        alert('error decoding file data: ' + url);
-        return;
-      }
-    };
-    request.send();
-  }
+  request.onerror = function() {
+    alert('BufferLoader: XHR error');
+  };
+
+  this.errorCallback = function(error) {
+    console.error('decodeAudioData error', error);
+  };
+
+  this.successCallback = function(buffer){
+    if (buffer) {
+      callback(buffer);
+    } else {
+      alert('error decoding file data: ' + that.url);
+      return;
+    }
+  };
+
+  request.send();
 }

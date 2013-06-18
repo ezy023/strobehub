@@ -2,12 +2,12 @@ class CreateTracks < ActiveRecord::Migration
   def change
     create_table    :tracks do |t|
       t.references  :version
-      t.string      :url
-      t.decimal     :delay
-      t.decimal     :offset
-      t.decimal     :duration
-      t.decimal     :volume
-      t.decimal     :track_length
+      t.text        :url
+      t.decimal     :delay,         :default => 0
+      t.decimal     :offset,        :default => 0
+      t.decimal     :duration,      :default => 0
+      t.decimal     :volume,        :default => 1
+      t.decimal     :track_length,  :default => 0
 
       t.timestamps
     end 

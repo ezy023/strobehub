@@ -2,7 +2,7 @@
 
 function Track(options) {
   var defaults = {delay:0, offset:0};
-  options = _.extend(defaults, options);
+  var options = _.extend(defaults, options);
   this.id = options.id; //only used to identify the track in the view, for ui purposes
   this.index = options.index;
   this.url = options.url;
@@ -70,6 +70,7 @@ function Track(options) {
     this.playAt(startTime);
   };
 
+
   this.bufferLoaded = function(buffer) {
     thisTrack.buffer = buffer;
     thisTrack.trackLength = buffer.duration;
@@ -95,8 +96,8 @@ function Track(options) {
   };
 
   this.toJSON = function(){
-    return {url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
+    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
   };
 
-  BufferLoader.load(this.context, this.url, this.bufferLoaded);
+  new BufferLoader(this.context, this.url, this.bufferLoaded);  
 }

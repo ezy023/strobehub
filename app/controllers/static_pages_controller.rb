@@ -31,5 +31,4 @@ class StaticPagesController < ApplicationController
 		flash[:success] = "You successfully logged out"
 		redirect_to :root
 	end
-
 end

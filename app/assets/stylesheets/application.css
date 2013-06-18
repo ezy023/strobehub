@@ -89,7 +89,7 @@ img.gravatar {
 .track_row {
   border: 1px solid #2E507F;
   padding: 0px;
-  margin: 0px;
+  margin: 0px auto;
   width: 900px;
   height: 60px;
   list-style: none;
@@ -185,4 +185,30 @@ img.gravatar {
 .control_panel {
   width:900px;
   height:160px;
+}
+
+#dropzone {
+  width: 900px;
+  height: 100px;
+  border: 5px solid #DDD;
+  padding: 0;
+  margin: auto;
+  text-align: center;
+  margin-left: 65px;
+}
+
+#dropzone h1 {
+  font-size: 40px;
+  line-height: 40px;
+  padding: 0;
+}
+
+#dropzone h1 a {
+  display: block;
+  color: #DDD;
+}
+
+#save_version {
+  float: right;
+  margin-top: 60px;
 }

@@ -11,5 +11,6 @@ Strobehub::Application.routes.draw do
   get   '/login'  => 'static_pages#new'
   post  '/login'  => 'static_pages#login'
   get   '/logout' => 'static_pages#logout'
+  post	'/repositories/:repository_id/versions/:id' => 'versions#update'
 
 end

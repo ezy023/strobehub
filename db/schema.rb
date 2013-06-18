@@ -14,10 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130615181708) do
 
   create_table "audio_sources", :force => true do |t|
-    t.string   "type"
-    t.string   "filename"
-    t.string   "title"
-    t.text     "data"
+    t.string   "file"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -32,14 +29,14 @@ ActiveRecord::Schema.define(:version => 20130615181708) do
 
   create_table "tracks", :force => true do |t|
     t.integer  "version_id"
-    t.string   "url"
-    t.decimal  "delay"
-    t.decimal  "offset"
-    t.decimal  "duration"
-    t.decimal  "volume"
-    t.decimal  "track_length"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.text     "url"
+    t.decimal  "delay",        :default => 0.0
+    t.decimal  "offset",       :default => 0.0
+    t.decimal  "duration",     :default => 0.0
+    t.decimal  "volume",       :default => 1.0
+    t.decimal  "track_length", :default => 0.0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "users", :force => true do |t|

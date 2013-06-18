@@ -5,8 +5,9 @@ class TracksController < ApplicationController
     if @audio_source.save
       flash[:success] = "File Uploaded"
       @audio_source.file.url
+      new_track = Track.new(:url => @audio_source.file.url)
       respond_to do |format|
-        format.json { render :json => @audio_source.file.url }
+        format.json { render :json => new_track.url }
       end
     else
       flash[:error] = "No good"

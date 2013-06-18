@@ -185,6 +185,7 @@ DEPENDENCIES
   gravatar_image_tag
   jasmine
   jquery-rails
+  json
   meta_request
   pg
   rails (= 3.2.13)

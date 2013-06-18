@@ -1,4 +1,4 @@
-<div id="editor">
+<div id="container">
   <ul id="track_list">
     <li class='track_row'>
       <div class='control_panel'>
@@ -27,6 +27,22 @@
       </div>
     </li>
   </ul>
+
+  <div id="dropzone">
+    <h1><a href="/" class='add_track'>DROP A BEAT </a></h1>
+    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag("Upload") %>
+    <% end %>
+  </div>
+
+  <div id="save_version">
+    <%= form_for( :version, 
+                  :html => { :method => "put" }, 
+                  :url => "/repositories/#{@repository.id}/versions/#{@version.id}") do |f|  %>
+      <%= f.submit "SAVE IT" %>
+    <% end %>
+  </div>
 
 </div>
 
