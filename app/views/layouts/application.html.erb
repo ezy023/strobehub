@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="background:url('<%= get_random_image %>') no-repeat center fixed black;">
 <head>
 	<title>Strobehub</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
@@ -8,16 +8,17 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
 <body>
-
 	<%= render "layouts/navbar" %>
+		<div class='content'>
 
-	<div class="error_flash">
-		<% flash.each do |name, msg| %>
-		<%= content_tag :div, msg, class: "alert",  :id => "flash_#{name}" %>
-		<% end %>
+		<div class="error_flash">
+			<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, class: "alert",  :id => "flash_#{name}" %>
+			<% end %>
+		</div>
+
+		<%= yield %>
 	</div>
-
-	<%= yield %>
 
 </body>
 </html>
