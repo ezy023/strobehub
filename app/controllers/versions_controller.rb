@@ -12,7 +12,10 @@ class VersionsController < ApplicationController
 	end
 
 	def create
-		# creates a new version of a repo
+    version = Version.find(params[:id])
+    new_version = version.clone
+    current_user.versions << new_version
+    redirect_to new_version
 	end
 
 	def show
@@ -29,12 +32,6 @@ class VersionsController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay, ]) }
-		end
-		current_version = Version.find(params[:id])
-		if current_version.user == current_user
-			@version = current_version
-		else
-			@version = current_version.clone(current_user)
 		end
 	end
 
