@@ -12,13 +12,27 @@ class VersionsController < ApplicationController
 	end
 
 	def create
-		# creates a new version of a repo
-	end
+	  version = Version.find(params[:id])
+    new_version = version.clone
+    current_user.versions << new_version
+    repository = Repository.find(params[:repository_id])
+    if request.xhr?
+			respond_to do |format|
+				format.json { render json: {repository_id: repository.id, version_id: new_version.id} }
+			end
+		else
+    	redirect_to repository_version_path(repository, new_version)
+		end
+  end
 
 	def show
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
-		@tracks = @version.tracks
+		@tracks = @version.tracks.order("id ASC")
+		respond_to do |format|
+			format.html
+			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
+		end
 	end
 
 	def edit
@@ -28,13 +42,7 @@ class VersionsController < ApplicationController
 		@tracks = @version.tracks.order("id ASC")
 		respond_to do |format|
 			format.html
-			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay, ]) }
-		end
-		current_version = Version.find(params[:id])
-		if current_version.user == current_user
-			@version = current_version
-		else
-			@version = current_version.clone(current_user)
+			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
 		end
 	end
 

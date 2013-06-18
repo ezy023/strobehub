@@ -37,9 +37,12 @@
   </div>
 
   <div id="save_version">
+
+    <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
+    <span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
     <%= form_for( :version,
                   :html => { :method => "put" },
-                  :url => "/repositories/#{@repository.id}/versions/#{@version.id}") do |f|  %>
+                  :url => repository_version_path(@repository, @version)) do |f|  %>
       <%= f.submit "SAVE IT" %>
     <% end %>
   </div>
