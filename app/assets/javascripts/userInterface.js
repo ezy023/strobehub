@@ -234,7 +234,12 @@ $(document).ready(function() {
 
     function sporkVersion() {
       var url = $('#spork_version form').attr('action');
-      $.post(url);
+      $.post(url, function(newPath) {
+        var repoID = newPath.repository_id;
+        var versionID = newPath.version_id;
+        var url = '/repositories/' + repoID + '/versions/' + versionID;
+        window.location.href = url;
+      });
     }
   }
   UserInterface();
