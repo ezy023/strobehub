@@ -121,17 +121,12 @@ $(document).ready(function() {
         formData.append("song_file", entry);
         xhr.open("POST", "http://localhost:3000/tracks", false);
         xhr.onload = function(evt){
-          audioClosure(xhr)();
-          console.log(xhr.response);
+          createTrack(this.response);
         }
         xhr.send(formData);
       }
     }
 
-    function audioClosure(xhr){
-      return function(){
-        createTrack(xhr.response);
-      }
     }
 
     function createTrack(url) {
