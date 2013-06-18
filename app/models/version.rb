@@ -7,19 +7,20 @@ class Version < ActiveRecord::Base
 
   validates :user_id, :repository_id, :presence => true
 
-  def clone(user)
-    new_version = Version.new
-    new_version.repository = repository
-    new_version.user = user
-    self.tracks.each { |track| track.clone(new_version).save }
+  def clone
+    new_version = self.dup
     new_version.save
+    self.tracks.each do |track|
+      new_track = track.dup
+      new_version.tracks << new_track
+    end
     new_version
   end
 
   def self.update_version(tracks, version_id)
   	tracks.each do |track|
       if track["id"]
-  			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
+  			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"])
       else
         Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)
       end
