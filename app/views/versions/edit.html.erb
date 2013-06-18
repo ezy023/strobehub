@@ -1,1 +1,5 @@
+<h2>
+  <%= @repository.name %>: Version created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
+</h2>
+
 <%= render partial: 'editor/editor' %>
