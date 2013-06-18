@@ -24,7 +24,6 @@
 	def show
 		@user = User.find(params[:id])
 		@user_repos = @user.created_repositories
-		# @user_repos = sRepository.where(:creator_id => params[:id])
 		@forked_repos = @user.versions.reject {|version| version.repository.creator == @user}.map {|version| version.repository}
 	end
 
