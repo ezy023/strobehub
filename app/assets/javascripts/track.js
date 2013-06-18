@@ -70,7 +70,6 @@ function Track(options) {
     this.playAt(startTime);
   };
 
-
   this.bufferLoaded = function(buffer) {
     thisTrack.buffer = buffer;
     thisTrack.trackLength = buffer.duration;
@@ -98,6 +97,10 @@ function Track(options) {
   this.toJSON = function(){
     return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
   };
+  this.filename = function(){
+    var filenameMatcher = /[^\/]+\.\w{2,}$/;
+    return filenameMatcher.exec(this.url);
+  }
 
-  new BufferLoader(this.context, this.url, this.bufferLoaded);  
+  new BufferLoader(this.context, this.url, this.bufferLoaded);
 }
