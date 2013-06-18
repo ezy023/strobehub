@@ -4,7 +4,6 @@ function TrackView() {
   var thisView = this;
 
   this.initializeView = function(track){
-    console.log(track);
     var elem = thisView.template(track);
     $('ul#track_list').append(elem);
     $('.audio_clip').draggable({ axis: "x" });

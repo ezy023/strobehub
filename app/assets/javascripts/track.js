@@ -18,8 +18,6 @@ function Track(options) {
   this.source;
 
   var thisTrack = this;
-  console.log("! constructor method:");
-  console.log(thisTrack);
 
   this.setUpBuffer = function(){
     var source = this.context.createBufferSource();

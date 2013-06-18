@@ -8,7 +8,6 @@ class Version < ActiveRecord::Base
   validates :user_id, :repository_id, :presence => true  
 
   def self.update_version(tracks, version_id)
-    puts "hello"
   	tracks.each do |track|
       if track["id"]
   			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => version_id)

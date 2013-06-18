@@ -1,7 +1,4 @@
 var BufferLoader = function(context, url, callback){
-  console.log("right, here");
-  console.log(url);
-
   var request = new XMLHttpRequest();
 
   this.context = context;
@@ -26,7 +23,6 @@ var BufferLoader = function(context, url, callback){
 
   this.successCallback = function(buffer){
     if (buffer) {
-      console.log("Success loading buffer: " + that.url)
       callback(buffer);
     } else {
       alert('error decoding file data: ' + that.url);

@@ -66,51 +66,42 @@ $(document).ready(function() {
       }
     }
 
+    var dropzone = document.getElementById('dropzone');
+    dropzone.ondragover = function(e){
+      e.preventDefault();
+      var dt = e.dataTransfer;
+    }
 
-// START Erik's gnarly code
-  var dropzone = document.getElementById('dropzone');
-  dropzone.ondragover = function(e){
-    // var data = e.dataTransfer.mozSetData("application/x-moz-file", file, 0);
-    e.preventDefault();
-    var dt = e.dataTransfer;
-  }
+    dropzone.ondrop = function(e){
+      e.preventDefault();
+      var dt = e.dataTransfer;
+      var files = dt.files;
+      var form = document.getElementById("song_upload");
 
-  dropzone.ondrop = function(e){
-    e.preventDefault();
-    var dt = e.dataTransfer;
-    var files = dt.files;
-    var form = document.getElementById("song_upload");
+      var entry;
 
-    var entry;
-
-    for (var i = 0; i < files.length; i++) {
-      var xhr = new XMLHttpRequest();
-      var formData = new FormData(form);
-      entry = files[i];
-      console.log(entry.name);
-      //if(entry instanceof File){ console.log("ITS A FILE"); console.log(entry.name);  }
-      formData.append("song_file", entry);
-      xhr.open("POST", "http://localhost:3000/tracks", false);
-      xhr.onload = function(evt){
-        // audioClosure(entry, i, xhr)();
-        // var con = new webkitAudioContext();
-        // var cool = new Track({url: xhr.response, context: con});
-        audioClosure(xhr)();
-        console.log(xhr.response);
+      for (var i = 0; i < files.length; i++) {
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData(form);
+        entry = files[i];
+        console.log(entry.name);
+        formData.append("song_file", entry);
+        xhr.open("POST", "http://localhost:3000/tracks", false);
+        xhr.onload = function(evt){
+          audioClosure(xhr)();
+          console.log(xhr.response);
+        }
+        xhr.send(formData);
       }
-      xhr.send(formData);
     }
-  }
 
-  function audioClosure(xhr){
-    return function(){
-      createTrack(xhr.response);
+    function audioClosure(xhr){
+      return function(){
+        createTrack(xhr.response);
+      }
     }
-  }
-  //END Erik's gnarly code
 
     function createTrack(url) {
-      console.log(url);
       var url = url;
       var lastTrack = _.max(playlist.tracks,function(track){return track.index;});
       var index = _.max([lastTrack.index + 1, 0]);
