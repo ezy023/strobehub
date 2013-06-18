@@ -10,7 +10,6 @@
 	end
 
 	def create
-    puts "YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
 		@user = User.new(params[:user])
 		if @user.save
 			session[:user_id] = @user.id
