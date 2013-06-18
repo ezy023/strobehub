@@ -22,7 +22,11 @@ class VersionsController < ApplicationController
 	def show
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
-		@tracks = @version.tracks
+		@tracks = @version.tracks.order("id ASC")
+		respond_to do |format|
+			format.html
+			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
+		end
 	end
 
 	def edit
@@ -32,7 +36,7 @@ class VersionsController < ApplicationController
 		@tracks = @version.tracks.order("id ASC")
 		respond_to do |format|
 			format.html
-			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay, ]) }
+			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
 		end
 	end
 
