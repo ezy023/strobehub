@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
 			redirect_to user_path(user)
 		else
 			flash[:error] = "Unsuccessful login attempt"
-			render login_path
+			redirect_to login_path
 		end
 	end
 
