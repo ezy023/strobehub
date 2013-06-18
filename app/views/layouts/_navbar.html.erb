@@ -10,6 +10,18 @@
       </h1>
     </li>
   </ul>
+
+  <div class="user_tools">
+    <br>
+    <h3> <%= link_to "Make a new repo", new_repository_path %></h3>
+      <br>
+    <h3><%= link_to "View all repos", repositories_path %></h3>
+     <br>
+     <br>
+    <h3><%= link_to "View all users", users_path %> </h3>
+    <br>
+  </div>
+
   <div class='user_widget'>
 
     <% if current_user %>

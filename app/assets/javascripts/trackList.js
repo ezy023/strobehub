@@ -40,6 +40,7 @@ function TrackList(context, savedJSON){
     for (i in this.tracks) {
       this.tracks[i].stop();
     }
+    $.Topic('TrackList:stopAll').publish();
   };
 
   this.resumeAll = function(){
