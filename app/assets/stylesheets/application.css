@@ -212,3 +212,9 @@ img.gravatar {
   float: right;
   margin-top: 60px;
 }
+
+.repo-name a {
+  font-size: 20px;
+  text-decoration: underline;
+  color: #39FF14;
+}

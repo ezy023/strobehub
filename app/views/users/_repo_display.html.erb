@@ -1,25 +1,39 @@
-  <label>Created Repos</label>
+  <h2>Created Repos</h2>
   <ul>
     <% if !@user_repos.empty? %>
       <% @user_repos.each do |repo| %>
-        <li><%= link_to repo.name, repo %></li>
+        <li class="repo-name"><%= link_to repo.name, repo %></li>
       <% end %>
     <% else %>
-      <li>You have not created any repositories, click here to get started!</li>
-      <li><%=link_to "New Repository", new_repository_path %></li>
+      <% if current_user == @user %>
+        <li>You have not created any repositories. <%=link_to "Click here", new_repository_path %> to get started!</li>
+      <% else %>
+        <li><%= @user.username %> has not created any repositories yet.</li>
+      <% end %>
     <% end %>
 </ul>
 
 <br>
 
-  <label>Forked Repos</label>
+  <h2>Sporked Repos</h2>
   <ul>
-    <% if !@forked_repos.empty? %>
-      <% @forked_repos.each do |repo| %>
-        <li><%= link_to repo.name, repo %></li>
+    <% if @sporked_repos.any? %>
+      <% @sporked_repos.each do |repo| %>
+        <li class="repo-name"><%= link_to repo.name, repo %></li>
+        <ul>
+        <% repo.versions.each do |version| %>
+          <% if version.user == @user %>
+          <li><%= link_to "Version created on #{version.created_at.to_date}", repository_version_path(repo, version) %></li>
+          <% end %>
+        <% end %>
+        </ul>
+        <br>
       <% end %>
     <% else %>
-      <li>You have not forked any repositories, click here to get started! </li>
-      <li><%=link_to  "All Repositories", repositories_path%></li>
+      <% if current_user == @user %>
+        <li>You have not sporked any repositories. <%=link_to  "Click here", repositories_path%> to get started! </li>
+      <% else %>
+        <li><%= @user.username %> has not sporked any repositories yet.</li>
+      <% end %>
     <% end %>
   </ul>
