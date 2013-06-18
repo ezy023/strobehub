@@ -38,4 +38,5 @@ describe 'profile page' do
     version.save
     page.should have_content(version.repository.name)
   end
+
 end
