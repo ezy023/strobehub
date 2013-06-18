@@ -111,13 +111,11 @@ $(document).ready(function() {
       var files = dt.files;
       var form = document.getElementById("song_upload");
 
-      var entry;
-
       for (var i = 0; i < files.length; i++) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData(form);
-        entry = files[i];
-        console.log(entry.name);
+        var entry = files[i];
+
         formData.append("song_file", entry);
         xhr.open("POST", "http://localhost:3000/tracks", false);
         xhr.onload = function(evt){
