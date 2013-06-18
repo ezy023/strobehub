@@ -5,7 +5,7 @@ function TrackView() {
 
   this.initializeView = function(track){
     var elem = thisView.trackTemplate(track);
-    $('ul#track_list').append(elem);
+    $('#loading_' + track.index).replaceWith(elem);
     $('.audio_clip').draggable({ axis: "x" });
     $.Topic('TrackView:initializeView').publish();
   };

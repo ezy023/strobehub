@@ -122,15 +122,16 @@ $(document).ready(function() {
           createTrack(this.response);
         }
         xhr.send(formData);
-        displayLoader();
+        displayLoader(i);
       }
     }
 
-    function displayLoader(){
+    function displayLoader(track_index){
       var trackList = document.getElementById('track_list');
       var empty_track_div = document.createElement('div');
-      empty_track_div.setAttribute('class', "loading_track");
-      empty_track_div.setAttribute('class', "track_row");
+      empty_track_div.setAttribute('class', "loading_track track_row");
+      empty_track_div.setAttribute('id', "loading_" + track_index);
+      //empty_track_div.setAttribute('class', "track_row");
       empty_track_div.innerHTML = "LOADING....";
       trackList.appendChild(empty_track_div);
     }
