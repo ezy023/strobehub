@@ -28,18 +28,7 @@ class VersionsController < ApplicationController
 	def show
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
-		@tracks = @version.tracks.order("id ASC")
-		respond_to do |format|
-			format.html
-			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
-		end
-	end
-
-	def edit
-		@repository = Repository.find(params[:repository_id])
-
-		@version = Version.find(params[:id])
-		@tracks = @version.tracks.order("id ASC")
+		@tracks = @version.tracks.order("id")
 		respond_to do |format|
 			format.html
 			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
@@ -47,9 +36,16 @@ class VersionsController < ApplicationController
 	end
 
 	def update
-		Version.update_version(params[:tracks], params[:id])
-		respond_to do |format|
-			format.json { render :json => "Saved Succesfully" }
+		version = Version.find(params[:id])
+		if current_user == version.user
+			version.update_tracks(params[:tracks])
+			respond_to do |format|
+				format.json { render :json => "Saved Succesfully" }
+			end
+		else
+			respond_to do |format|
+				format.json { render :json => "NO. You can't do that." }
+			end
 		end
 	end
 
