@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
-    $('#track_list').on('mouseup', '.audio_clip', updateDelay);
+    $('#track_list').on('mousedown', '.audio_clip', updateDelay);
     $('#track_list').click(clickRouter)
     $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
@@ -161,10 +161,13 @@ $(document).ready(function() {
     }
 
     function updateDelay(e) {
+      var trackElement = this;
       setSelectedTrack(e);
-      var left = parseInt($(this).css("left"), 10);
-      var delay = secondize(left);
-      selectedTrack.setDelay(delay);
+      $(document).mouseup(function() {
+        var left = parseInt($(trackElement).css("left"), 10);
+        var delay = secondize(left);
+        selectedTrack.setDelay(delay);
+      });
     }
 
 
