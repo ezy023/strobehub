@@ -3,7 +3,6 @@
   src:url('DS-DIGI.TTF');
 }
 
-
 body{
   padding:0;
   margin:0;
@@ -48,6 +47,9 @@ li {
   list-style:none;
 }
 
+#container {
+  font-family:'DS-Digital';
+}
 .repo_list {
   float:left;
   width:500px;
@@ -154,7 +156,8 @@ img.gravatar {
   padding: 0px;
   margin: 0px;
   width: 600px;
-  overflow: hidden;
+  overflow-y: hidden;
+  overlow-x:scroll;
   background-color: #A9CCFF;
   position:relative;
 

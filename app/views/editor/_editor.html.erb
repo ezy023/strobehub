@@ -8,13 +8,13 @@
           <a href="#" id="stop_all">[ ]</a>
         </div>
         <div id='global_info'>
-          <div id='minutes'>
+          <div class='minutes'>
             00:
           </div>
-          <div id='seconds'>
+          <div class='seconds'>
             00.
           </div>
-          <div id='milliseconds'>
+          <div class='milliseconds'>
             000
           </div>
           <div class='label'>
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div id='add_track'>
-          <a href="#" id='add_track'>add +</a>
+          <%= link_to @repository.name, @repository %>
         </div>
       </div>
     </li>
@@ -37,8 +37,8 @@
   </div>
 
   <div id="save_version">
-    <%= form_for( :version, 
-                  :html => { :method => "put" }, 
+    <%= form_for( :version,
+                  :html => { :method => "put" },
                   :url => "/repositories/#{@repository.id}/versions/#{@version.id}") do |f|  %>
       <%= f.submit "SAVE IT" %>
     <% end %>
@@ -50,16 +50,18 @@
   <!-- in this an individual track is being passed in as obj -->
   <li class="track_row" id="track_{{= obj.index }}" data-index="{{= obj.index}}">
     <div class="track_controls">
-      {{=obj.url}}
+      {{=obj.filename()}}
       <br>
       <a class='resume_track' href='#'>></a>
       <a class='stop_track' href='#'>[ ]</a>
     </div>
+
     <div class="track_line">
       <div class="audio_clip" style="width:{{=pixelize(obj.duration)}}px;left:{{=pixelize(obj.delay)}}px">
       </div>
       <div class="progress_bar"></div>
     </div>
+
     <div class="track_info">
       delay: {{= Math.floor(obj.delay*1000)/1000 }}
       <br>
