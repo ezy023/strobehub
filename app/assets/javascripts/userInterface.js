@@ -16,7 +16,7 @@ $(document).ready(function() {
     var selectStart;
     var selectEnd;
     var selectedTrack;
-    setupTemplate()
+    setupTemplate();
     var trackView = new TrackView();
 
     var url = window.location.pathname + ".json";
