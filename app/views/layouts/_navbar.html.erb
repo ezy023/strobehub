@@ -1,12 +1,36 @@
-<div id="user_nav">
-  <ul class="nav">
-  	<li><%= link_to "Home", '/' %></li>
-  <% if current_user %>
-    <span class="username">Logged in as <%= link_to current_user.username, user_path(current_user) %></span>
-    <li><%= link_to "Log out", logout_path %></li>
-  <% else %>
-    <li><%= link_to "Sign up", new_user_path %></li>
-    <li><%= link_to "Log in", login_path %></li>
-  <% end %>
+<div class="left_nav">
+  <ul class="nav_links">
+  	<li>
+      <h2>
+        <%= link_to "Strobe", root_url %>
+      </h2>
+
+      <h1>
+        <%= link_to "hub", root_url %>
+      </h1>
+    </li>
   </ul>
+  <div class='user_widget'>
+
+    <% if current_user %>
+      <%= link_to gravatar_image_tag(@user.email, class:'gravatar'),  user_path(current_user)%>
+      <br>
+        <h3>
+          <%= link_to current_user.username, user_path(current_user) %>
+        </h3>
+        <h3>
+          <%= link_to "Log out", logout_path %>
+        </h3>
+    <% else %>
+
+      <h3>
+        <%= link_to "Sign up", new_user_path %>
+      </h3>
+
+      <h3>
+        <%= link_to "Log in", login_path %>
+      </h3>
+    <% end %>
+  </div>
+  </div>
 </div>
