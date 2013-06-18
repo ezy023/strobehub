@@ -122,9 +122,17 @@ $(document).ready(function() {
           createTrack(this.response);
         }
         xhr.send(formData);
+        displayLoader();
       }
     }
 
+    function displayLoader(){
+      var trackList = document.getElementById('track_list');
+      var empty_track_div = document.createElement('div');
+      empty_track_div.setAttribute('class', "loading_track");
+      empty_track_div.setAttribute('class', "track_row");
+      empty_track_div.innerHTML = "LOADING....";
+      trackList.appendChild(empty_track_div);
     }
 
     function createTrack(url) {
