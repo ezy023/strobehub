@@ -8,9 +8,9 @@ Strobehub::Application.routes.draw do
   end
 
   get   '/'       => 'static_pages#index'
-  get   '/login'  => 'static_pages#new'
-  post  '/login'  => 'static_pages#login'
-  get   '/logout' => 'static_pages#logout'
+  get   '/login'  => 'sessions#new'
+  post  '/login'  => 'sessions#login'
+  get   '/logout' => 'sessions#logout'
   post	'/repositories/:repository_id/versions/:id' => 'versions#update'
 
 end
