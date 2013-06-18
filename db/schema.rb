@@ -14,10 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130615181708) do
 
   create_table "audio_sources", :force => true do |t|
-    t.string   "type"
-    t.string   "filename"
-    t.string   "title"
-    t.text     "data"
+    t.string   "file"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
