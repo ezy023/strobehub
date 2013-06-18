@@ -7,8 +7,8 @@ describe 'profile page' do
     @repo.creator = @user
     @repo.save
     visit login_path
-    fill_in 'static_pages[username]', :with => @user.username
-    fill_in 'static_pages[password]', :with => @user.password
+    fill_in 'sessions[username]', :with => @user.username
+    fill_in 'sessions[password]', :with => @user.password
     click_button 'Log In'
   end
 
@@ -18,10 +18,6 @@ describe 'profile page' do
 
   it "should display user's name" do
     page.should have_content(@user.username)
-  end
-
-  it "should have logged in user name at the top" do
-    page.should have_content("Logged in as")
   end
 
   it "should list the users created repos" do
