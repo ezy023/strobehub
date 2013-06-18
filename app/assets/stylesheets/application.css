@@ -3,17 +3,87 @@
   src:url('DS-DIGI.TTF');
 }
 
+
 body{
+  padding:0;
+  margin:0;
+  color:white;
+  font-family:"BebasNeue", sans-serif;
+}
+
+h1, h2, h3 {
   font-family:'DS-Digital';
+  padding:0;
+  margin:0;
+  font-weight:normal;
 }
 
-a {
+.content h1 {
+  color: #F61595;
+}
+
+h1 {
+  font-size:60px;
+}
+
+h2 {
+  font-size:40px;
+}
+
+a{
   text-decoration: none;
+  color: white;
 }
 
-#container {
-  width: 1000px;
+a:hover {
+  color: #39FF14;
+}
+
+ul {
+  padding:0;
+  margin:0;
+}
+
+li {
+  list-style:none;
+}
+
+.repo_list {
+  float:left;
+  width:500px;
+}
+
+
+.user_list {
+  float:right;
+  width:500px;
+}
+
+.content {
+  width:1000px;
   margin: 0px auto;
+  background-color: rgba(44,44,44,0.8);
+  height:100vh;
+}
+
+.left_nav{
+  position: fixed;
+  left:0;
+  top:0;
+  padding-left:20px;
+  height:100%;
+  width:150px;
+  background-color: #2c2c2d;
+}
+
+.user_widget{
+  margin:0 auto;
+  position:absolute;
+  bottom: 20px;
+}
+
+img.gravatar {
+  border-radius:10px;
 }
 
 .track_row {

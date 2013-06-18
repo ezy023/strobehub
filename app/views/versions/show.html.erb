@@ -1,3 +1,7 @@
-<h5> shows individual version of a repo </h5>
-
-<h5><%= link_to "Edit this version", edit_repository_version_path(@repository, @version) %></h5>
+<h2>
+  <%= @repository.name %>: Version created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
+</h2>
+<h5>
+  <%= link_to @version.user == current_user ? "Clone this" : "Edit this" , edit_repository_version_path(@repository, @version) %></h5>
+<%= render partial: 'editor/editor' %>
+<!-- make setting so that you can't change the track, just play/pause -->
