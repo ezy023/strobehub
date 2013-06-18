@@ -117,7 +117,7 @@ $(document).ready(function() {
         var entry = files[i];
 
         formData.append("song_file", entry);
-        xhr.open("POST", "http://localhost:3000/tracks", false);
+        xhr.open("POST", "http://localhost:3000/tracks", true);
         xhr.onload = function(evt){
           createTrack(this.response);
         }
