@@ -12,12 +12,12 @@ class VersionsController < ApplicationController
 	end
 
 	def create
-		current_version = Version.find(params[:id])
-		if current_version.user == current_user
-			@version = current_version
-		else
-			@version = current_version.clone(current_user)
-		end	end
+    version = Version.find(params[:id])
+    new_version = version.clone
+    current_user.versions << new_version
+    repository = Repository.find(params[:repository_id])
+    redirect_to repository_version_path(repository, new_version)
+  end
 
 	def show
 		@repository = Repository.find(params[:repository_id])

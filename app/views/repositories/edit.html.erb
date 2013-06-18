@@ -8,13 +8,13 @@
           <a href="#" id="stop_all">[ ]</a>
         </div>
         <div id='global_info'>
-          <div id='minutes'>
+          <div class='minutes'>
             00:
           </div>
-          <div id='seconds'>
+          <div class='seconds'>
             00.
           </div>
-          <div id='milliseconds'>
+          <div class='milliseconds'>
             000
           </div>
           <div class='label'>
@@ -52,6 +52,19 @@
       duration: {{= Math.floor(obj.duration*1000)/1000 }}
       <br>
       original length: {{= Math.floor(obj.trackLength*1000)/1000}}
+      <br>
+        <div class='minutes'>
+          00:
+        </div>
+        <div class='seconds'>
+          00.
+        </div>
+        <div class='milliseconds'>
+          000
+        </div>
+        <div class='label'>
+          &nbsp;sec
+        </div>
     </div>
   </li>
 </script>

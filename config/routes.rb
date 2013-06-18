@@ -12,5 +12,6 @@ Strobehub::Application.routes.draw do
   post  '/login'  => 'static_pages#login'
   get   '/logout' => 'static_pages#logout'
   post	'/repositories/:repository_id/versions/:id' => 'versions#update'
+  post  '/repositories/:repository_id/versions/:id/new' => 'versions#create', :as => "spork_version"
 
 end
