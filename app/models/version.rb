@@ -2,6 +2,8 @@ class Version < ActiveRecord::Base
 	attr_accessible :user_id, :repository_id, :parent_version_id
 
   has_many    :tracks
+  has_many    :favorites
+  has_many    :user_favorites, :through => :favorites, :source => :user
   belongs_to  :user
   belongs_to  :repository
   belongs_to  :parent_version, :class_name => "Version", :foreign_key => :parent_version_id
