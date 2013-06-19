@@ -38,6 +38,7 @@ $(document).ready(function() {
 
 
     function clickRouter(e){
+      e.preventDefault();
       switch ($(e.target).attr('class')){
         case ('pause_track'):
           pauseTrack($(e.target));
@@ -48,7 +49,34 @@ $(document).ready(function() {
         case ('stop_track'):
           stopTrack($(e.target));
           break;
+        case ('delete'):
+          deleteClick($(e.target));
+          break;
+        case ('delete_confirm'):
+          deleteConfirm($(e.target));
+          break;
+        case ('delete_cancel'):
+          deleteCancel($(e.target));
+          break;
       }
+    }
+
+    function deleteClick(target){
+      var confirm = "<a class='delete_confirm' href='#'>confirm</a>"
+      var cancel =  "<a class='delete_cancel' href='#'>cancel</a>"
+      target.closest("span").html(cancel + '&nbsp;' + confirm);
+    }
+
+    function deleteConfirm(target){
+      var targetRow = target.closest('li')
+      var index = targetRow.data('index');
+      playlist.tracks[index].deleted = true;
+      targetRow.remove();
+    }
+
+    function deleteCancel(target){
+      var deleteLink = "<a class='delete' href='#'>delete</a>"
+      target.closest("span").html(deleteLink);
     }
 
     function keyDownEvent(e) {

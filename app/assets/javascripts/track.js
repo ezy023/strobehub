@@ -16,6 +16,7 @@ function Track(options) {
   this.startTime = 0; // = context.currenttime when play is started
   this.pauseTime = 0; // = context.currenttime when play is paused
   this.source;
+  this.deleted = false;
 
   var thisTrack = this;
 
@@ -95,12 +96,13 @@ function Track(options) {
   };
 
   this.toJSON = function(){
-    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
+    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength, deleted:this.deleted};
   };
+
   this.filename = function(){
     var filenameMatcher = /[^\/]+\.\w{2,}$/;
     return filenameMatcher.exec(this.url);
-  }
+  };
 
   new BufferLoader(this.context, this.url, this.bufferLoaded);
 }

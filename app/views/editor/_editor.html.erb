@@ -16,7 +16,6 @@
     <% end %>
   </div>
 
-
   <%= form_tag(favorites_path, :method => 'post', :remote => true) do %>
     <%= hidden_field_tag "version_id", @version.id %>
     <%= submit_tag "Favorite" %>
