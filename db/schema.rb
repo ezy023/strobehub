@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615181708) do
+ActiveRecord::Schema.define(:version => 20130619010647) do
 
   create_table "audio_sources", :force => true do |t|
     t.string   "file"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "repo_tags", :force => true do |t|
+    t.integer  "repository_id"
+    t.integer  "tag_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "repositories", :force => true do |t|
@@ -26,6 +33,12 @@ ActiveRecord::Schema.define(:version => 20130615181708) do
     t.integer  "master_version_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tracks", :force => true do |t|

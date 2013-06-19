@@ -1,0 +1,11 @@
+<center><h1>View repositories tagged with "<%= @tag.name %>"</h1></center>
+
+<ul>
+<% if @repositories %>
+	<% @repositories.each do |repo| %>
+		<li class="repo-name"><%= link_to repo.name, repo %><br>
+			<p>Created by: <%= link_to repo.creator.username, repo.creator %></li>
+		<br>
+	<% end %>
+<% end %>
+</ul>
