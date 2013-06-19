@@ -1,3 +1,4 @@
+<div class="created-repos">
   <h2>Created Repos</h2>
   <ul>
     <% if !@user_repos.empty? %>
@@ -11,10 +12,12 @@
         <li><%= @user.username %> has not created any repositories yet.</li>
       <% end %>
     <% end %>
-</ul>
+  </ul>
+</div>
 
 <br>
 
+<div class="sporked-repos">
   <h2>Sporked Repos</h2>
   <ul>
     <% if @sporked_repos.any? %>
@@ -37,3 +40,4 @@
       <% end %>
     <% end %>
   </ul>
+</div>
