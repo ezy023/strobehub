@@ -162,13 +162,11 @@ $(document).ready(function() {
     }
 
     function updateDelay(e) {
-      var trackElement = this;
       setSelectedTrack(e);
       $(document).mouseup(function() {
-        var left = parseInt($(trackElement).css("left"), 10);
+        var left = parseInt($('#track_'+selectedTrack.index).find('.audio_clip').css("left"));
         var delay = secondize(left);
         selectedTrack.setDelay(delay);
-
       });
     }
 

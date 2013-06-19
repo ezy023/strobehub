@@ -11,6 +11,8 @@ function TrackView() {
   };
 
   this.render = function(track){
+    // $('#track_'+track.index).replaceWith(thisView.trackTemplate( track ));
+    // $('.audio_clip').draggable({ axis: "x" });
     var trackRow = $('#track_'+track.index);
     trackRow.find('.audio_clip').css('left', pixelize(track.delay) + 'px');
     trackRow.find('.audio_clip').width(pixelize(track.duration) + 'px');
