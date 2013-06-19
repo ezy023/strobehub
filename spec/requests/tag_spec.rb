@@ -29,51 +29,35 @@ describe Tag do
 		page.should have_content(@tag.repositories.first.name)
 	end
 
-	it "should display tags on repository page" do
-		version = FactoryGirl.build(:version)
-    version.user = @user
-    version.repository = @repo
-    version.save
-    @repo.master_version_id = version.id
-    @repo.save
-		visit repository_path(@repo)
-		page.should have_content(@tag.name)
-	end
+	describe "tag view on repository page" do
+		before :each do
+			@version = FactoryGirl.build(:version)
+	    @version.user = @user
+	    @version.repository = @repo
+	    @version.save
+	    @repo.master_version_id = @version.id
+	    @repo.save
+			visit repository_path(@repo)
+		end
 
-	it "should redirect to correct tag page from repository page" do
-		version = FactoryGirl.build(:version)
-    version.user = @user
-    version.repository = @repo
-    version.save
-    @repo.master_version_id = version.id
-    @repo.save
-		visit repository_path(@repo)
-		click_link @tag.name
-		current_path.should eq tag_path(@tag)	
-	end
+		it "should display tags on repository page" do
+			page.should have_content(@tag.name)
+		end
 
-	it "should display tags on version page" do
-		version = FactoryGirl.build(:version)
-    version.user = @user
-    version.repository = @repo
-    version.save
-    @repo.master_version_id = version.id
-    @repo.save
-		visit repository_version_path(@repo, version)
-		page.should have_content(@tag.name)
-	end
+		it "should redirect to correct tag page from repository page" do
+			click_link @tag.name
+			current_path.should eq tag_path(@tag)	
+		end
 
-	it "should redirect to correct tag page from version page" do
-		version = FactoryGirl.build(:version)
-    version.user = @user
-    version.repository = @repo
-    version.save
-    @repo.master_version_id = version.id
-    @repo.save
-		visit repository_version_path(@repo, version)
-		click_link @tag.name
-		current_path.should eq tag_path(@tag)	
-	end
+		it "should display tags on version page" do
+			visit repository_version_path(@repo, @version)
+			page.should have_content(@tag.name)
+		end
 
-	
+		it "should redirect to correct tag page from version page" do
+			visit repository_version_path(@repo, @version)
+			click_link @tag.name
+			current_path.should eq tag_path(@tag)	
+		end
+	end
 end
