@@ -3,7 +3,7 @@ class Version < ActiveRecord::Base
 
   has_many    :tracks
   has_many    :favorites
-  has_many    :user_favorites, :through => :favorites, :class_name => "User"
+  has_many    :user_favorites, :through => :favorites, :source => :user
   belongs_to  :user
   belongs_to  :repository
   belongs_to  :parent_version, :class_name => "Version", :foreign_key => :parent_version_id

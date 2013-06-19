@@ -1,10 +1,11 @@
 class FavoritesController < ApplicationController
 
 	def create
-		p current_user.favorite(version)
+		version = Version.find(params[:version_id])
+		current_user.favorite(version)
 		respond_to do |format|
 			format.html
-			format.js
+			format.js 
 		end	
 	end
 

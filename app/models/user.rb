@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :repositories, :through => :versions
 
   has_many :favorites
-  has_many :favorite_versions, :through => :favorites, :class_name => "Version"
+  has_many :favorite_versions, :through => :favorites, :source => :version
 
   has_many :created_repositories, :class_name => "Repository", :foreign_key => :creator_id
 
