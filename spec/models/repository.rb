@@ -6,7 +6,6 @@ describe Repository do
     it { should validate_presence_of (:name) }
     it { should validate_presence_of (:description) }
     it { should validate_presence_of (:creator_id) }
-    it { should validate_presence_of (:master_version_id) }
   end
 
   context "have associations" do
