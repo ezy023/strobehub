@@ -1,17 +1,22 @@
 function TrackView() {
   this.intervals = {};
-  this.template = _.template($( "script.template" ).html());
+  this.trackTemplate = _.template($( "script.template" ).html());
   var thisView = this;
 
   this.initializeView = function(track){
-    var elem = thisView.template(track);
+    var elem = thisView.trackTemplate(track);
     $('ul#track_list').append(elem);
     $('.audio_clip').draggable({ axis: "x" });
+    $.Topic('TrackView:initializeView').publish();
   };
 
   this.render = function(track){
-    $('#track_'+track.index).replaceWith(thisView.template( track ));
-    $('.audio_clip').draggable({ axis: "x" });
+    var trackRow = $('#track_'+track.index);
+    trackRow.find('.audio_clip').css('left', pixelize(track.delay) + 'px');
+    trackRow.find('.audio_clip').width(pixelize(track.duration) + 'px');
+    trackRow.find('.delay').html(Math.floor(track.delay*1000)/1000);
+    trackRow.find('.offset').html(Math.floor(track.offset*1000)/1000);
+    trackRow.find('.duration').html(Math.floor(track.duration*1000)/1000);
   };
 
   this.updateProgressBar = function(track) {
@@ -32,12 +37,21 @@ function TrackView() {
     $('#global_info .milliseconds').html(milliseconds);
   };
 
+  this.strobe = function() {
+    var fiftyShadesOfRage = ['#36FE39', '#F2FE45', '#FC0307', '#DE95FF','#E5E5E3'];
+    $('h1').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+    $('h2').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+    $('h3').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+    $('a').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+  };
+
   this.play = function(track){
     var startTime = track.startTime;
     var intervalId = setInterval(function(){
       thisView.updateProgressBar(track);
+      // thisView.strobe();
       thisView.updateGlobalPlayTime();
-    }, 20);
+    }, 40);
     thisView.intervals[track.index] = intervalId;
   };
 

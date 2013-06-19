@@ -1,7 +1,6 @@
 function TrackList(context, savedJSON){
   this.context = context;
   this.tracks = [];
-  this.longestDuration = 10;
 
   this.addTrack = function(track) {
     this.tracks.push(track);
@@ -49,6 +48,15 @@ function TrackList(context, savedJSON){
     }
   };
 
+  this.longestLength = function(){
+    var longest = 0;
+    for(i in this.tracks){
+      var totalLength = parseInt(this.tracks[i].duration) +  parseInt(this.tracks[i].delay);
+      longest = (longest < totalLength) ? totalLength : longest;
+    }
+
+    return longest;
+  }
 
   if(typeof(savedJSON) !== 'undefined' ) {
     this.load(savedJSON);

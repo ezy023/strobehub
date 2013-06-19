@@ -21,20 +21,42 @@
             &nbsp;sec
           </div>
         </div>
-        <div id='add_track'>
-          <%= link_to @repository.name, @repository %>
+      </div>
+    </li>
+    <li class='track_row thin'>
+      <div class='scroll_control thin'>
+        scroll:
+      </div>
+      <div class='scroll_container thin'>
+        <div class="scrollbar">
         </div>
+      </div>
+      <div class='scroll_info thin'>
+        &nbsp;view: <span class='scroll_time'>
+          <span class='minutes'>
+            00:
+          </span>
+          <span class='seconds'>
+            00.
+          </span>
+          <span class='milliseconds'>
+            000
+          </span>
+          &nbsp;sec
+        </span>
+      </div>
+    </li>
+
+    <li>
+      <div id="dropzone">
+        <h1><a href="/" class='add_track'>DROP A BEAT </a></h1>
+        <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag("Upload") %>
+        <% end %>
       </div>
     </li>
   </ul>
-
-  <div id="dropzone">
-    <h1><a href="/" class='add_track'>DROP A BEAT </a></h1>
-    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag("Upload") %>
-    <% end %>
-  </div>
 
   <div id="save_version">
     <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
@@ -47,13 +69,12 @@
     <% end %>
   </div>
 
+
   <%= form_tag(favorites_path, :method => 'post', :remote => true) do %>
     <%= hidden_field_tag "version_id", @version.id %>
     <%= submit_tag "Favorite" %>
   <% end %>
 
-
-</div>
 
 <script type="text/template" class="template">
   <!-- in this an individual track is being passed in as obj -->
@@ -64,19 +85,19 @@
       <a class='resume_track' href='#'>></a>
       <a class='stop_track' href='#'>[ ]</a>
     </div>
-
-    <div class="track_line">
-      <div class="audio_clip" style="width:{{=pixelize(obj.duration)}}px;left:{{=pixelize(obj.delay)}}px">
+    <div class='track_window'>
+      <div class="track_line">
+        <div class="audio_clip" style="width:{{=pixelize(obj.duration)}}px;left:{{=pixelize(obj.delay)}}px">
+        </div>
+        <div class="progress_bar"></div>
       </div>
-      <div class="progress_bar"></div>
     </div>
-
     <div class="track_info">
-      delay: {{= Math.floor(obj.delay*1000)/1000 }}
+      delay: <span class='delay'>{{= Math.floor(obj.delay*1000)/1000 }}</span>
       <br>
-      offset: {{= Math.floor(obj.offset*1000)/1000 }}
+      offset: <span class='offset'>{{= Math.floor(obj.offset*1000)/1000 }}</span>
       <br>
-      duration: {{= Math.floor(obj.duration*1000)/1000 }}
+      duration: <span class='duration'>{{= Math.floor(obj.duration*1000)/1000 }}</span>
       <br>
       original length: {{= Math.floor(obj.trackLength*1000)/1000}}
     </div>
