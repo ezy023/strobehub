@@ -1,12 +1,6 @@
 class SessionsController < ApplicationController
 	skip_before_filter :require_login
 
-	def index
-	end
-
-	def new
-	end
-
 	def login
 		user = User.find_by_username(params[:sessions][:username])
 		if user && user.authenticate(params[:sessions][:password])

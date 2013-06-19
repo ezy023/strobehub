@@ -10,12 +10,13 @@ class RepositoriesController < ApplicationController
 	end
 
 	def create
-		@repository = Repository.new(params[:repository])
-		@repository.creator_id = current_user.id
-		if @repository.save
+		repository = Repository.new(params[:repository])
+		repository.creator_id = current_user.id
+		if repository.save
 			flash[:success] = "You just created a new repository"
-			version = Version.create(:repository_id => @repository.id, :user_id => current_user.id)
-			redirect_to repository_version_path(@repository, version)
+			version = Version.create(:repository_id => repository.id, :user_id => current_user.id)
+			repository.assign_master(version)
+			redirect_to repository_version_path(repository, version)
 		else
 			flash[:error] = "Please make sure to complete all fields"
 			redirect_to new_repository_path
