@@ -25,6 +25,7 @@
 		@user = User.find(params[:id])
 		@user_repos = @user.created_repositories
 		@sporked_repos = @user.versions.reject {|version| version.repository.creator == @user}.map {|version| version.repository}.uniq
+    @feed_items = @user.feed
 	end
 
 	def edit

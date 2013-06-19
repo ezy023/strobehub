@@ -13,3 +13,11 @@
 
 <%= render partial: "user_profile" %>
 <%= render partial: "repo_display" %>
+
+<h4><%= @user.username %>'s Feed</h4>
+<div id="user_feed">
+  <% @feed_items.each do |item| %>
+    <%= link_to item.user.username, user_path(item.user) %>:
+    <%= link_to item.repository.name, repository_version_path(item.repository, item) %>
+  <% end %>
+</div>
