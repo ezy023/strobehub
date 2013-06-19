@@ -8,8 +8,14 @@
   <br>
   <%= f.text_area :description, :size => '30 x 10', placeholder: "Description" %>
   <br>
-  <div class="action">
-    <%= f.submit "Create Repo" %>
-  </div>
+  <%= f.label :tags %>
+  <br>
+  <% @tags.each do |tag| %>
+    <%= check_box_tag("tag[]", tag.id) %><%= tag.name %>
+  <% end %>
+  <br>
+  <!-- <div class="action"> -->
+  <%= f.submit "Create Repo" %>
+  <!-- </div> -->
 </div>
 <%end%>
