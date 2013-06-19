@@ -1,4 +1,4 @@
-class TracksController < ApplicationController
+ class TracksController < ApplicationController
 
 	def create
     @audio_source = AudioSource.new(:file => params[:song_file])
