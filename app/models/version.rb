@@ -31,4 +31,10 @@ class Version < ActiveRecord::Base
 		end
   end
 
+  def self.from_users_followed_by(user)
+    followed_users = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    where("user_id IN (#{followed_users})", user_id: user.id).limit(10).order("updated_at DESC")
+  end
+     
+
 end
