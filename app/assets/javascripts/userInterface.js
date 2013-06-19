@@ -10,8 +10,6 @@ var context = new webkitAudioContext();
 var playlist = new TrackList(context);
 
 $(document).ready(function() {
-  $()
-
   function UserInterface() {
     var CKEY = 67;
     var SKEY = 83;
