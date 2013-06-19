@@ -1,9 +1,7 @@
-// track = new Track({url:'one_blind.mp3',context: new webkitAudioContext});
-
 function Track(options) {
   var defaults = {delay:0, offset:0};
   var options = _.extend(defaults, options);
-  this.id = options.id; //only used to identify the track in the view, for ui purposes
+  this.id = options.id;
   this.index = options.index;
   this.url = options.url;
   this.context = options.context;
