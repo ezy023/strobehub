@@ -208,6 +208,10 @@ div.thin, li.thin {
   background-color: none;
 }
 
+.loading_track {
+  background-image: image-url("ajax-loader.gif");
+}
+
 #dropzone {
   width: 890px;
   height: 100px;

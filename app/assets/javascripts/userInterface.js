@@ -110,28 +110,25 @@ $(document).ready(function() {
       var dt = e.dataTransfer;
       var files = dt.files;
       var form = document.getElementById("song_upload");
-
-      var entry;
-
       for (var i = 0; i < files.length; i++) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData(form);
-        entry = files[i];
-        console.log(entry.name);
+        var entry = files[i];
         formData.append("song_file", entry);
-        xhr.open("POST", "http://localhost:3000/tracks", false);
+        xhr.open("POST", "http://localhost:3000/tracks", true);
         xhr.onload = function(evt){
-          audioClosure(xhr)();
-          console.log(xhr.response);
+          createTrack(this.response);
         }
         xhr.send(formData);
+        displayLoader(i);
       }
     }
 
-    function audioClosure(xhr){
-      return function(){
-        createTrack(xhr.response);
-      }
+    function displayLoader(unique_id){
+      var trackList = document.getElementById('track_list');
+      var empty_track_div = document.createElement('div');
+      empty_track_div.setAttribute('class', "loading_track track_row");
+      trackList.appendChild(empty_track_div);
     }
 
     function createTrack(url) {
