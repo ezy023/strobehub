@@ -17,7 +17,8 @@
 <h4><%= @user.username %>'s Feed</h4>
 <div id="user_feed">
   <% @feed_items.each do |item| %>
-    <%= link_to item.user.username, user_path(item.user) %>:
-    <%= link_to item.repository.name, repository_version_path(item.repository, item) %>
+    <span class="username_feed"><%= link_to item.user.username, user_path(item.user) %></span>:
+    <span class="respository_name_feed"><%= link_to item.repository.name, repository_version_path(item.repository, item) %></span>
+    <strong><%= time_ago_in_words(item.updated_at) %> ago</strong>
   <% end %>
 </div>
