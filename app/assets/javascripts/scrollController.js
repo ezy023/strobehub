@@ -1,7 +1,6 @@
 function ScrollController() {
   var thisView = this;
   var scrollbarWidth;
-  // updateTrackWidths();
 
   $('.scrollbar').draggable({
     axis: "x",
