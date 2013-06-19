@@ -150,29 +150,42 @@ img.gravatar {
   float:left;
 }
 
-.track_line {
+.track_window, .scroll_container {
   border-left: 1px solid #2E507F;
   border-right: 1px solid #2E507F;
   padding: 0px;
   margin: 0px;
   width: 600px;
-  overflow-y: hidden;
-  overlow-x:scroll;
+  overflow:hidden;
   background-color: #A9CCFF;
   position:relative;
-
 }
 
-.track_controls {
+.scroll_info {
+  color: #04A3FE;
+}
+
+.track_line {
+  position:absolute;
+  background-color: #262A43;
+}
+
+.track_controls, .scroll_control {
   width: 150px;
   color: white;
   background-color: #4A7FCC;
 }
+
+
 .track_info {
   width:148px;
   font-size: 12px;
   color: white;
   background-color:#55667F;
+}
+
+.scrollbar {
+  background-color: red;
 }
 
 
@@ -190,14 +203,18 @@ img.gravatar {
   height:160px;
 }
 
+div.thin, li.thin {
+  height:20px;
+  background-color: none;
+}
+
 #dropzone {
-  width: 900px;
+  width: 890px;
   height: 100px;
   border: 5px solid #DDD;
   padding: 0;
   margin: auto;
   text-align: center;
-  margin-left: 65px;
 }
 
 #dropzone h1 {

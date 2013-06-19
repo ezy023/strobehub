@@ -1,9 +1,9 @@
 function pixelize(seconds){
-  return Math.floor(seconds / playlist.longestDuration * 600);
+  return Math.floor(seconds / 60 * 600);
 }
 
 function secondize(pixels){
-  return pixels / 600 * playlist.longestDuration;
+  return pixels / 600 * 60;
 }
 
 var context = new webkitAudioContext();
@@ -18,6 +18,7 @@ $(document).ready(function() {
     var selectedTrack;
     setupTemplate();
     var trackView = new TrackView();
+    var scrollController = new ScrollController();
 
     var url = window.location.pathname + ".json";
     $.getJSON(url, function(data) {
@@ -134,7 +135,7 @@ $(document).ready(function() {
       target.html('>');
       target.removeClass();
       target.addClass('resume_track');
-      var index = target.parent().parent().data('index');
+      var index = target.closest('li').data('index');
       playlist.tracks[index].pause();
     }
 
@@ -142,7 +143,7 @@ $(document).ready(function() {
       target.html('||');
       target.removeClass();
       target.addClass('pause_track');
-      var index = target.parent().parent().data('index');
+      var index = target.closest('li').data('index');
       playlist.tracks[index].resume();
     }
 
@@ -151,7 +152,7 @@ $(document).ready(function() {
       playPauseButton.html('>');
       playPauseButton.removeClass();
       playPauseButton.addClass('resume_track');
-      var index = target.parent().parent().data('index');
+      var index = target.closest('li').data('index');
       playlist.tracks[index].stop();
     }
 
@@ -167,6 +168,7 @@ $(document).ready(function() {
         var left = parseInt($(trackElement).css("left"), 10);
         var delay = secondize(left);
         selectedTrack.setDelay(delay);
+
       });
     }
 
@@ -200,7 +202,6 @@ $(document).ready(function() {
       selectedTrack.setOffset(selectedTrack.offset + secondize(Math.min(selectStart, selectEnd)));
       selectedTrack.setDelay(selectedTrack.delay + secondize(Math.min(selectStart, selectEnd)));
       console.log('new offset = ' + selectedTrack.offset + ' , new delay = ' + selectedTrack.delay);
-
       selectedTrack.setDuration(secondize(Math.abs(selectEnd - selectStart)));
     }
 
