@@ -217,7 +217,8 @@ $(document).ready(function() {
       var currentUser = $('#current_user').html();
       var versionOwner = $('#version_owner').html();
       if (currentUser === versionOwner) {
-        saveVersion();
+        url = $(this).find('form').attr('action')
+        saveVersion(url);
       } else if (currentUser === "") {
         window.location.href = '/login';
       } else {
@@ -225,10 +226,10 @@ $(document).ready(function() {
       }
     }
 
-    function saveVersion() {
+    function saveVersion(url) {
       $.ajax({
         type: "POST",
-        url: $(this).find('form').attr('action'),
+        url: url,
         dataType: 'json',
         contentType: 'application/json',
         data: playlist.toJSONString()

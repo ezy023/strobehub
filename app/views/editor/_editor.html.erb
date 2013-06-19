@@ -41,8 +41,8 @@
     <span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
 
     <%= form_for( :version,
-                  :html => { :method => "put" },
-                  :url => repository_version_path(@repository, @version)) do |f|  %>
+                  :html => { :method => "post" },
+                  :url => update_version_path(@repository, @version)) do |f|  %>
       <%= f.submit "SAVE IT" %>
     <% end %>
   </div>
