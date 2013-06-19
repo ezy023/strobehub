@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20130615181708) do
     t.string   "name"
     t.text     "description"
     t.integer  "creator_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "master_version_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "tracks", :force => true do |t|
@@ -50,8 +51,9 @@ ActiveRecord::Schema.define(:version => 20130615181708) do
   create_table "versions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "repository_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "parent_version_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
 end

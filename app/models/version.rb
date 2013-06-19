@@ -1,14 +1,16 @@
 class Version < ActiveRecord::Base
-	attr_accessible :user_id, :repository_id
+	attr_accessible :user_id, :repository_id, :parent_version_id
 
-  has_many   :tracks
-  belongs_to :user
-  belongs_to :repository
+  has_many    :tracks
+  belongs_to  :user
+  belongs_to  :repository
+  belongs_to  :parent_version, :class_name => "Version", :foreign_key => :parent_version_id
 
   validates :user_id, :repository_id, :presence => true
 
   def clone
     new_version = self.dup
+    new_version.parent_version_id = self.id
     new_version.save
     self.tracks.each do |track|
       new_track = track.dup

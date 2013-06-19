@@ -4,6 +4,7 @@ class CreateRepositories < ActiveRecord::Migration
       t.string     :name
       t.text       :description
       t.references :creator
+      t.references :master_version
 
       t.timestamps
     end
