@@ -2,7 +2,6 @@ class RelationshipsController < ApplicationController
 
 
   def create
-    puts params
     @user = User.find(params[:user_id])
     current_user.follow!(@user)
     respond_to do |format|
