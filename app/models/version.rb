@@ -24,7 +24,11 @@ class Version < ActiveRecord::Base
   def update_tracks(tracks)
   	tracks.each do |track|
       if track["id"]
-  			Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"])
+        if track["deleted"] == true
+          Track.find(track["id"]).destroy
+        else
+  			 Track.update(track["id"], :url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"])
+        end
       else
         Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => self.id)
       end

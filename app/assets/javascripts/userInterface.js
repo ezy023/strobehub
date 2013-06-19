@@ -13,6 +13,7 @@ $(document).ready(function() {
   function UserInterface() {
     var CKEY = 67;
     var SKEY = 83;
+    var SPACE = 32;
     var selectStart;
     var selectEnd;
     var selectedTrack;
@@ -83,6 +84,9 @@ $(document).ready(function() {
       switch (e.which) {
         case (SKEY):
           createSoundSelection();
+          break;
+        case (SPACE):
+          playAll();
           break;
       }
     }
