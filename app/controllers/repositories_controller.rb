@@ -1,10 +1,6 @@
 class RepositoriesController < ApplicationController
 	skip_before_filter :require_login, :only => :index
 
-	def index
-		#show all repos
-	end
-
 	def new
 		@repository = Repository.new
 	end
