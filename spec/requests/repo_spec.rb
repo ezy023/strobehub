@@ -12,13 +12,38 @@ describe Repository do
       click_button "Log In"
     end
 
-    it 'can create a new repo and navigates to that new repository' do
+    it 'can create a new repo and navigates to the first version of the new repository' do
+      FactoryGirl.create(:tag)
       visit new_repository_path
       fill_in "repository_name", with: "repository"
       fill_in "repository_description", with: "repository description"
+      page.check('tag[]')
       click_button "Create Repo"
-      page.should have_content("repository")
-      
+      repository = Repository.last
+      version = Version.where(:repository_id => repository.id).first
+      current_path.should eq repository_version_path(repository, version)      
+    end
+
+    it 'creates a new version upon successful repo creation' do
+      FactoryGirl.create(:tag)
+      visit new_repository_path
+      fill_in "repository_name", with: "repository"
+      fill_in "repository_description", with: "repository description"
+      page.check('tag[]')
+      click_button "Create Repo"
+      repository = Repository.last
+      Version.last.repository_id.should eq repository.id
+    end
+
+    it 'assigns first repo version as master version' do
+      FactoryGirl.create(:tag)
+      visit new_repository_path
+      fill_in "repository_name", with: "repository"
+      fill_in "repository_description", with: "repository description"
+      page.check('tag[]')
+      click_button "Create Repo"
+      repository = Repository.last
+      Version.last.id.should eq repository.master_version_id
     end
 
     it 'keeps user on same page if repository is not created' do
@@ -54,7 +79,9 @@ describe Repository do
       @version.user = @user
       @version.repository = @repository
       @version.save
-      visit repository_version_path(@repository, @version)
+      @repository.master_version_id = @version.id
+      @repository.save
+      visit repository_path(@repository)
     end
 
     it "displays repository name" do 
@@ -64,7 +91,6 @@ describe Repository do
     it "displays version user name" do
       page.should have_content(@user.username)
     end
-
   end
 
 end

@@ -1,0 +1,26 @@
+<script type="text/template" class="template">
+  <li class="track_row" id="track_{{= obj.index }}" data-index="{{= obj.index}}">
+    <div class="track_controls">
+      {{=obj.filename()}}
+      <br>
+      <a class='resume_track' href='#'>></a>
+      <a class='stop_track' href='#'>[ ]</a>
+    </div>
+    <div class='track_window'>
+      <div class="track_line">
+        <div class="audio_clip" style="width:{{=pixelize(obj.duration)}}px;left:{{=pixelize(obj.delay)}}px">
+        </div>
+        <div class="progress_bar"></div>
+      </div>
+    </div>
+    <div class="track_info">
+      delay: <span class='delay'>{{= Math.floor(obj.delay*1000)/1000 }}</span>
+      <br>
+      offset: <span class='offset'>{{= Math.floor(obj.offset*1000)/1000 }}</span>
+      <br>
+      duration: <span class='duration'>{{= Math.floor(obj.duration*1000)/1000 }}</span>
+      <br>
+      original length: {{= Math.floor(obj.trackLength*1000)/1000}}
+    </div>
+  </li>
+</script>
