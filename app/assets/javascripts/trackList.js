@@ -1,6 +1,7 @@
 function TrackList(context, savedJSON){
   this.context = context;
   this.tracks = [];
+  this.timeoutId = [];
 
   this.addTrack = function(track) {
     this.tracks.push(track);
@@ -22,10 +23,17 @@ function TrackList(context, savedJSON){
     }
   };
 
-  this.playAllAt = function(time){
-    for (i in this.tracks) {
-      this.tracks[i].playAt(time);
+  this.longestLength = function(){
+    var longest = 0;
+    for(i in this.tracks){
+      var totalLength = parseFloat(this.tracks[i].duration) +  parseFloat(this.tracks[i].delay);
+      longest = (longest < totalLength) ? totalLength : longest;
     }
+    return longest;
+  };
+
+  this.setStopTimer = function(time){
+    this.timeoutId = setTimeout(this.stopAll, (this.longestLength() - time)*1000);
   };
 
   this.pauseAll = function(){
@@ -38,6 +46,7 @@ function TrackList(context, savedJSON){
     for (i in this.tracks) {
       this.tracks[i].stop();
     }
+    for (i in this.timeoutId) { clearTimeout(timeoutId[i]); }
     $.Topic('TrackList:stopAll').publish();
   };
 
@@ -47,15 +56,13 @@ function TrackList(context, savedJSON){
     }
   };
 
-  this.longestLength = function(){
-    var longest = 0;
-    for(i in this.tracks){
-      var totalLength = parseInt(this.tracks[i].duration) +  parseInt(this.tracks[i].delay);
-      longest = (longest < totalLength) ? totalLength : longest;
+  this.playAllAt = function(time){
+    for (i in this.tracks) {
+      this.tracks[i].playAt(time);
     }
+    this.setStopTimer(time);
+  };
 
-    return longest;
-  }
 
   if(typeof(savedJSON) !== 'undefined' ) {
     this.load(savedJSON);
