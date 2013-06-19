@@ -79,7 +79,9 @@ describe Repository do
       @version.user = @user
       @version.repository = @repository
       @version.save
-      visit repository_version_path(@repository, @version)
+      @repository.master_version_id = @version.id
+      @repository.save
+      visit repository_path(@repository)
     end
 
     it "displays repository name" do 
@@ -89,7 +91,6 @@ describe Repository do
     it "displays version user name" do
       page.should have_content(@user.username)
     end
-
   end
 
 end
