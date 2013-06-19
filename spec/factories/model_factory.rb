@@ -28,4 +28,8 @@ FactoryGirl.define do
   factory :version do
   end
 
+  factory :tag do
+    name 'partystrobe'
+  end
+
 end

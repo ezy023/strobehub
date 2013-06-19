@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+	skip_before_filter	:require_login
+	
 	def index
 		@tags = Tag.all
 	end
