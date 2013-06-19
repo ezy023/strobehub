@@ -1,0 +1,16 @@
+<h2>
+  <%= @repository.name %> created by <%= @repository.creator.username %>
+</h2>
+<br>
+<h3>Tags:
+	<% if @tags %>
+		<ul class="tag-list">
+		<% @tags.each do |tag| %>
+			<li><%= link_to tag.name, tag %></li>
+		<% end %>
+		</ul>
+	<% end %>
+<br>
+<h3><%= link_to "View all versions of this repository", repository_versions_path(@repository) %></h3>
+<br>
+<%= render partial: 'editor/editor' %>

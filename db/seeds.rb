@@ -17,4 +17,5 @@ Repository.all.each { |r| 3.times { r.tags << Tag.all.sample } }
 	Version.create(:user_id => User.all.sample.id, :repository_id => Repository.all.sample.id)
 end
 
-
+Repository.update(1, :master_version_id => Repository.first.versions.first.id)
+Repository.update(2, :master_version_id => Repository.last.versions.first.id)
