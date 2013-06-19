@@ -1,9 +1,7 @@
-// track = new Track({url:'one_blind.mp3',context: new webkitAudioContext});
-
 function Track(options) {
   var defaults = {delay:0, offset:0};
   var options = _.extend(defaults, options);
-  this.id = options.id; //only used to identify the track in the view, for ui purposes
+  this.id = options.id;
   this.index = options.index;
   this.url = options.url;
   this.context = options.context;
@@ -16,6 +14,7 @@ function Track(options) {
   this.startTime = 0; // = context.currenttime when play is started
   this.pauseTime = 0; // = context.currenttime when play is paused
   this.source;
+  this.deleted = false;
 
   var thisTrack = this;
 
@@ -95,12 +94,13 @@ function Track(options) {
   };
 
   this.toJSON = function(){
-    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength};
+    return {id:this.id, url:this.url, delay:this.delay, offset:this.offset, duration:this.duration, trackLength:this.trackLength, deleted:this.deleted};
   };
+
   this.filename = function(){
     var filenameMatcher = /[^\/]+\.\w{2,}$/;
     return filenameMatcher.exec(this.url);
-  }
+  };
 
   new BufferLoader(this.context, this.url, this.bufferLoaded);
 }

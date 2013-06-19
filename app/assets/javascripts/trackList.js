@@ -16,7 +16,6 @@ function TrackList(context, savedJSON){
 
   this.load = function(json) {
     var state = JSON.parse(json);
-    this.longestDuration = state.longestDuration;
     for (i in state.tracks){
       state.tracks[i].context = this.context;
       this.tracks.push(new Track(tracks[i]));
