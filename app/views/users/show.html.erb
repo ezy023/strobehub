@@ -1,9 +1,13 @@
 <h3><%=@user.username%>'s Profile Page</h3>
 <% unless current_user == @user %>
-  <%= form_tag(follow_user_path, :remote => true) %>
-      <%= hidden_field "user_id", @user.id %>
-      <%= submit_tag "Follow" %>
-  <% end %>
+  <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= render 'relationships/unfollow' %>
+    <% else %>
+      <%= render 'relationships/follow' %>
+    <% end %>
+  </div>
+<% end %>
 
 <%= render 'follow_stats' %>
 
