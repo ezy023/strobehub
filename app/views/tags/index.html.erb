@@ -1,0 +1,10 @@
+<center><h1>View repositories by tag</h1></center>
+<% @tags.each do |tag| %>
+	<h2><%= link_to tag.name, tag %></h2>
+	<% if tag.repositories.any? %>
+ 		<h3>Featured repository</h3>
+ 		<%= link_to tag.repositories.first.name, tag.repositories.first, :class => "repo-name" %>
+ 		<br>
+ 	<% end %>
+	<br>
+<% end %>

@@ -221,3 +221,7 @@ img.gravatar {
   text-decoration: underline;
   color: #39FF14;
 }
+
+ul.tag-list li {
+  display: inline;
+}

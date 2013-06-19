@@ -3,9 +3,10 @@ Strobehub::Application.routes.draw do
   
   resources   :users
   resources   :tracks
-  resources   :repositories do
+  resources   :repositories, :except => :index do
     resources :versions, :except => [:edit, :update, :create]
   end
+  resources   :tags, :only => [:index, :show]
 
   get   '/'       => 'static_pages#index'
   get   '/login'  => 'sessions#new'
