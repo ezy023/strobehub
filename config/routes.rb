@@ -3,6 +3,7 @@ Strobehub::Application.routes.draw do
   
   resources   :users
   resources   :tracks
+  resources   :favorites, :only => :create
   resources   :repositories do
     resources :versions, :except => [:edit, :update, :create]
   end
