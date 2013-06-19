@@ -7,8 +7,13 @@ class StaticPagesController < ApplicationController
 		end[0..4]
 
 		@users = User.all.sort_by do |user|
-			-user.versions.count
+			-user.followers.count
 		end[0..4]
+
+		@versions = Version.all.sort_by do |version|
+			-version.user_favorites.count
+		end[0..4]
+
 	end
 
 	def new

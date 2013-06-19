@@ -20,6 +20,28 @@
 
   <div class='user_list'>
     <h2>Popular DJ's</h2>
-    
+    <ul>
+    <% @users.each do |user| %>
+      <li>
+       <%= link_to user.username, user %>
+      </li>
+        <% end %>
+    </ul>
   </div>
+
+
+  <div class='fav_versions'>
+    <h2>Popular Versions</h2>
+    <ul>
+    <% @versions.each do |version| %>
+      <li>
+       Repo Name: <%=link_to version.repository.name, version.repository %>
+        <li>
+       <%= link_to "Version by #{version.user.username}" ,repository_version_path(version.repository.id, version) %>
+        </li>
+    </li>
+        <% end %>
+    </ul>
+  </div>
+
 </div>
