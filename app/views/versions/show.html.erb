@@ -1,6 +1,20 @@
 <h2>
   <%= @repository.name %>: Version created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
 </h2>
+<h3>Tags:
+	<% if @tags %>
+		<ul class="tag-list">
+		<% @tags.each do |tag| %>
+			<li><%= link_to tag.name, tag %></li>
+		<% end %>
+		</ul>
+	<% end %>
+<br>
+<% if @version.parent_version_id %>
+	<h3><%= link_to "View version history", version_history_path(@repository, @version) %></h3>
+<% else %>
+	<h3 class="master-version">Master Version</h3>
+<% end %>
 <h5>
 	<% if current_user != @version.user %>
 		<span id="spork_version">

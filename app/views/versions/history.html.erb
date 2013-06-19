@@ -1,0 +1,6 @@
+<h2><%= link_to "Version created at #{@version.created_at.to_date}", repository_version_path(@repository, @version) %> by <%= link_to @version.user.username, @version.user %></h2>
+
+<% @parents.each do |parent| %>
+	<h3>Sporked from <%= link_to "version created at #{parent.created_at.to_date}", repository_version_path(@repository, parent) %> by <%= link_to parent.user.username, parent.user %></h3>
+	<br>
+<% end %>

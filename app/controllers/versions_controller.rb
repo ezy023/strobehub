@@ -29,6 +29,7 @@ class VersionsController < ApplicationController
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
 		@tracks = @version.tracks.order("id")
+		@tags = @repository.tags
 		respond_to do |format|
 			format.html
 			format.json { render json: @tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
@@ -51,6 +52,13 @@ class VersionsController < ApplicationController
 
 	def destroy
 		# deletes the version
+	end
+
+	def history
+		@repository = Repository.find(params[:repository_id])
+		@version = Version.find(params[:id])
+		@parents = Version.where(:repository_id => @repository.id) - [@version]
+		@parents.reverse!
 	end
 
 end
