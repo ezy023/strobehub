@@ -17,9 +17,14 @@ class VersionsController < ApplicationController
     current_user.versions << new_version
     repository = Repository.find(params[:repository_id])
     if request.xhr?
-			respond_to do |format|
-				format.json { render json: {repository_id: repository.id, version_id: new_version.id} }
-			end
+
+    	# you dont need this:
+			# respond_to do |format|
+			# 	format.json { render json: {repository_id: repository.id, version_id: new_version.id} }
+			# end
+
+			# we can just do this:
+			render json: {repository_id: repository.id, version_id: new_version.id}
 		else
     	redirect_to repository_version_path(repository, new_version)
 		end
@@ -28,7 +33,7 @@ class VersionsController < ApplicationController
 	def show
 		@repository = Repository.find(params[:repository_id])
 		@version = Version.find(params[:id])
-		@tracks = @version.tracks.order("id")
+		@tracks = @version.tracks.order("id") # itd be nice to be explicit about whether its "id ASC" or "id DESC"
 		@tags = @repository.tags
 		respond_to do |format|
 			format.html
@@ -40,13 +45,19 @@ class VersionsController < ApplicationController
 		version = Version.find(params[:id])
 		if current_user == version.user
 			version.update_tracks(params[:tracks])
-			respond_to do |format|
-				format.json { render :json => "Saved Succesfully" }
-			end
+
+			# if we know this action only handles ajax requests, we dont need to be using respond_to
+			# respond_to do |format|
+			# 	format.json { render :json => "Saved Succesfully" }
+			# end
+
+			render :json => "Saved Succesfully"
 		else
-			respond_to do |format|
-				format.json { render :json => "NO. You can't do that." }
-			end
+			# respond_to do |format|
+			# 	format.json { render :json => "NO. You can't do that." }
+			# end
+
+			render :json => "NO. You can't do that."
 		end
 	end
 

@@ -41,12 +41,12 @@
 
   def following
     @user = User.find_by_id(params[:id])
-    @followed_users = @user.followed_users.all
+    @followed_users = @user.followed_users
   end
 
   def followers
     @user = User.find_by_id(params[:id])
-    @followers = @user.followers.all
+    @followers = @user.followers
   end
 
 end
