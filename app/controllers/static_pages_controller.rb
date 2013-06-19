@@ -2,6 +2,8 @@ class StaticPagesController < ApplicationController
 	skip_before_filter :require_login
 
 	def index
+		
+		#ToDo change to query
 		@repositories = Repository.all.sort_by do |repo|
 			-repo.versions.count
 		end[0..4]
