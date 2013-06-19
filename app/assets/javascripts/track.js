@@ -102,5 +102,10 @@ function Track(options) {
     return filenameMatcher.exec(this.url);
   };
 
+  this.deleteTrack = function() {
+    this.deleted = true;
+    $.Topic('Track:deleted').publish();
+  }
+
   new BufferLoader(this.context, this.url, this.bufferLoaded);
 }

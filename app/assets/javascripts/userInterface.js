@@ -71,7 +71,7 @@ $(document).ready(function() {
     function deleteConfirm(target){
       var targetRow = target.closest('li')
       var index = targetRow.data('index');
-      playlist.tracks[index].deleted = true;
+      playlist.tracks[index].deleteTrack();
       targetRow.remove();
     }
 

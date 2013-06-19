@@ -61,4 +61,5 @@ function ScrollController() {
   $.Topic("Track:setDelay").subscribe(updateWidths);
   $.Topic("Track:setOffset").subscribe(updateWidths);
   $.Topic("Track:setDuration").subscribe(updateWidths);
+  $.Topic("Track:deleted").subscribe(updateWidths);
 }

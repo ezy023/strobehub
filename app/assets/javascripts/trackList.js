@@ -26,8 +26,10 @@ function TrackList(context, savedJSON){
   this.longestLength = function(){
     var longest = 0;
     for(i in this.tracks){
-      var totalLength = parseFloat(this.tracks[i].duration) +  parseFloat(this.tracks[i].delay);
-      longest = (longest < totalLength) ? totalLength : longest;
+      if (!this.tracks[i].deleted){
+        var totalLength = parseFloat(this.tracks[i].duration) +  parseFloat(this.tracks[i].delay);
+        longest = (longest < totalLength) ? totalLength : longest;
+      }
     }
     return longest;
   };
@@ -52,13 +54,14 @@ function TrackList(context, savedJSON){
 
   this.resumeAll = function(){
     for (i in this.tracks) {
-      this.tracks[i].resume(time);
+      if (!this.tracks[i].deleted){ this.tracks[i].resume(time); }
     }
+    this.setStopTimer(time);
   };
 
   this.playAllAt = function(time){
     for (i in this.tracks) {
-      this.tracks[i].playAt(time);
+      if (!this.tracks[i].deleted){ this.tracks[i].resume(time); }
     }
     this.setStopTimer(time);
   };
