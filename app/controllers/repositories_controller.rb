@@ -3,6 +3,7 @@ class RepositoriesController < ApplicationController
 
 	def new
 		@repository = Repository.new
+		@tags = Tag.all
 	end
 
 	def create
@@ -10,8 +11,8 @@ class RepositoriesController < ApplicationController
 		repository.creator_id = current_user.id
 		if repository.save
 			flash[:success] = "You just created a new repository"
-			version = Version.create(:repository_id => repository.id, :user_id => current_user.id)
-			repository.assign_master(version)
+			repository.add_tags(params[:tag])
+			version = repository.assign_master_version
 			redirect_to repository_version_path(repository, version)
 		else
 			flash[:error] = "Please make sure to complete all fields"

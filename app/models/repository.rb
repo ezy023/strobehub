@@ -11,8 +11,14 @@ class Repository < ActiveRecord::Base
 
   validates :name, :description, :creator_id, :presence => true
 
-  def assign_master(version)
+  def add_tags(tags)
+    tags.each { |tag_id| self.tags << Tag.find(tag_id) }
+  end
+
+  def assign_master_version
+    version = Version.create(:repository_id => self.id, :user_id => self.creator.id)
   	self.master_version_id = version.id
   	self.save
+    version
   end
 end
