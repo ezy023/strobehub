@@ -1,0 +1,14 @@
+<div class='user'>
+  <div class='gravatar'>
+    <%= link_to gravatar_image_tag(user.email, class:'gravatar'), user%>
+  </div>
+  <div>
+    <h3>
+      <%= link_to user.username, user %>
+    </h3>
+    <br>
+    Mixes: <%= user.repositories.count %>
+    <br>
+    Sporks: <%= user.versions.count %>
+  </div>
+</div>

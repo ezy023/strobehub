@@ -48,6 +48,7 @@ li {
 }
 
 #container {
+  float:left;
   font-family:'DS-Digital';
 }
 .repo_list {
@@ -55,6 +56,26 @@ li {
   width:500px;
 }
 
+.title {
+  float:left;
+  width:700px;
+}
+
+.tags {
+  float:left;
+  width:200px;
+  padding-top:8px;
+}
+
+.tag a{
+  border: 2px solid #39FF14;
+  padding: 2px 4px;
+  margin: 2px;
+}
+
+.tag-list li {
+  text-align: right;
+}
 
 .user_list {
   float:right;
@@ -78,6 +99,16 @@ li {
   background-color: #2c2c2d;
 }
 
+.description, .versions_list {
+  float:left;
+  width:450px;
+}
+
+.show_page_header {
+  width:900px;
+  float:left;
+}
+
 .user_widget{
   margin:0 auto;
   position:absolute;
@@ -94,9 +125,11 @@ img.gravatar {
   margin: 0px auto;
   width: 900px;
   height: 60px;
-  list-style: none;
 }
 
+.editor {
+
+}
 
 #strobe {
   color:#F61595;
@@ -157,41 +190,34 @@ img.gravatar {
   margin: 0px;
   width: 600px;
   overflow:hidden;
-  background-color: #A9CCFF;
+  background-color: rgba(34,42,67,0.4);
   position:relative;
 }
 
 .scroll_info {
-  color: #04A3FE;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .track_line {
   position:absolute;
-  background-color: #262A43;
+  background-color: rgba(34,42,67,0.8);
 }
 
 .track_controls, .scroll_control {
   width: 150px;
   color: white;
-  background-color: #4A7FCC;
+  background-color: rgba(0,0,0,0.5);
 }
-
 
 .track_info {
   width:148px;
-  font-size: 12px;
+  font-size: 13px;
   color: white;
-  background-color:#55667F;
+  background-color: rgba(0,0,0,0.5);
 }
-
-.scrollbar {
-  background-color: red;
-}
-
 
 .audio_clip {
-  background-color: #CC6236;
-  height: 60px;
+  background-color: orange;
   position: relative;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -212,29 +238,38 @@ div.thin, li.thin {
   background-image: image-url("ajax-loader.gif");
 }
 
-#dropzone {
+.editor.bottom {
   width: 890px;
-  height: 100px;
+  height: 40px;
   border: 5px solid #DDD;
   padding: 0;
   margin: auto;
   text-align: center;
 }
 
-#dropzone h1 {
-  font-size: 40px;
-  line-height: 40px;
-  padding: 0;
+.track_row form{
+  width:150px;
 }
 
-#dropzone h1 a {
-  display: block;
-  color: #DDD;
+.track_row.bottom {
+  height:50px;
+}
+
+#dropzone {
+  width:600px;
+  text-align: center;
 }
 
 #save_version {
   float: right;
   margin-top: 60px;
+}
+
+a.show_hide {
+  font-size: 40px;
+  position:relative;
+  left:250px;
+  top: 10px;
 }
 
 .repo-name a {
@@ -243,6 +278,31 @@ div.thin, li.thin {
   color: #39FF14;
 }
 
-ul.tag-list li {
-  display: inline;
+.scrollbar {
+  border: 2px solid red;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
 }
+
+form.favorite{
+  width:0;
+  height:0;
+}
+
+.favorite_button{
+  background:none;
+  border: 3px solid #39FF14;
+  padding: 2px 4px;
+  margin-top:14px;
+  margin-left:30px;
+  color:white;
+  font-size: 18px;
+  font-family:"BebasNeue", sans-serif;
+}
+
+.user div {
+  float:left;
+  padding: 5px;
+}
+
+
