@@ -36,6 +36,10 @@ $(document).ready(function() {
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
     $('#save_version').submit( checkUser );
+    $('#dropzone_disabled').click(function(e) {
+      e.preventDefault();
+      sporkVersion();
+    })
 
 
     function clickRouter(e){
@@ -248,12 +252,12 @@ $(document).ready(function() {
       var currentUser = $('#current_user').html();
       var versionOwner = $('#version_owner').html();
       if (currentUser === versionOwner) {
-        url = $(this).find('form').attr('action')
+        var url = $(this).find('form').attr('action')
         saveVersion(url);
       } else if (currentUser === "") {
         window.location.href = '/login';
       } else {
-        sporkVersion();
+        sporkVersion(url);
       }
     }
 
@@ -268,8 +272,8 @@ $(document).ready(function() {
     }
 
     function sporkVersion() {
-      var url = $('#spork_version form').attr('action');
-      $.post(url, function(newPath) {
+      var url = $('#dropzone_disabled a').attr('href');
+      saveVersion(url).done(function(newPath) {
         var repoID = newPath.repository_id;
         var versionID = newPath.version_id;
         var url = '/repositories/' + repoID + '/versions/' + versionID;
