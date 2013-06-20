@@ -1,27 +1,16 @@
 <div id="container">
-  <ul id="track_list">
+  <ul>
     <%= render 'editor/controls' %>
+  </ul>
+  <ul id="track_list">
     <%= render 'editor/scroll' %>
     <%= render 'editor/dropzone' %>
   </ul>
+</div>
 
-  <div id="save_version">
-    <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
-    <span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
-
-    <%= form_for( :version,
-                  :html => { :method => "post" },
-                  :url => update_version_path(@repository, @version)) do |f|  %>
-      <%= f.submit "SAVE IT" %>
-    <% end %>
-  </div>
-
-  <% if current_user %>
-    <%= form_tag(favorites_path, :method => 'post', :remote => true) do %>
-      <%= hidden_field_tag "version_id", @version.id %>
-      <%= submit_tag "Favorite" %>
-    <% end %>
-  <% end %>
+<div id="save_version">
+  <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
+  <span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
+</div>
 
 <%= render 'editor/track_template' %>
-</div>

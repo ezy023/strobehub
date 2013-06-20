@@ -1,20 +1,53 @@
-<h2>
-  <%= @repository.name %>: Version created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
-</h2>
-<h3>Tags:
-	<% if @tags %>
-		<ul class="tag-list">
+<div class='show_page_header'>
+	<div class='title'>
+		<h2>
+		  <%= @repository.name %>
+		</h2>
+		<%=  @version.parent_version ? 'Version ' : 'Master version ' %>created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
+	</div>
+	<div class='tags'>
 		<% @tags.each do |tag| %>
-			<li><%= link_to tag.name, tag %></li>
+			<span class='tag'>
+				<%= link_to tag.name, tag %>
+			</span>
 		<% end %>
 		</ul>
-	<% end %>
+	</div>
+</div>
 <br>
-<% if @version.parent_version_id %>
-	<h3><%= link_to "View version history", version_history_path(@repository, @version) %></h3>
-<% else %>
-	<h3 class="master-version">Master Version</h3>
-<% end %>
+<br>
+<%= render partial: 'editor/editor' %>
+
+<div class='repo_info'>
+	<div class='description'>
+		Description: <%= @repository.description %>
+		<br>
+		<br>
+		<%= render 'users/user_widget', user:@repository.creator %>
+	</div>
+
+	<div class='versions_list'>
+
+		Versions:
+		<br>
+		<% if @version.parent_version_id %>
+			<h4><%= link_to "View version history", version_history_path(@repository, @version) %></h4>
+		<% else %>
+			<h3 class="master-version">Master Version</h3>
+		<% end %>
+		<ul>
+			<% @repository.versions do |version| %>
+				<li>
+					<%= link_to version.id, repository_version_path(@repository, version) %>
+					<br>
+					<%= render 'users/user_widget', user:version.user %>
+
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
 <h5>
 	<% if current_user != @version.user %>
 		<span id="spork_version">
@@ -22,5 +55,5 @@
 		</span>
 	<% end %>
 </h5>
-<%= render partial: 'editor/editor' %>
 <!-- make setting so that you can't change the track, just play/pause -->
+
