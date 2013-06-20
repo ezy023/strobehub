@@ -25,7 +25,7 @@
   <div class='user_widget'>
 
     <% if current_user %>
-      <%= link_to gravatar_image_tag(@user.email, class:'gravatar'),  user_path(current_user)%>
+      <%= link_to gravatar_image_tag(current_user.email, class:'gravatar'),  user_path(current_user)%>
       <br>
         <h3>
           <%= link_to current_user.username, user_path(current_user) %>
