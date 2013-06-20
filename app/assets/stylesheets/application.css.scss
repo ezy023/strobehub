@@ -9,6 +9,8 @@ body{
   color:white;
   font-family:"BebasNeue", sans-serif;
   width: 1600px;
+  background-color: rgba(44,44,44,0.8);
+  height:100vh;
 }
 
 h1, h2, h3 {
@@ -82,8 +84,6 @@ li {
 .content {
   width:1000px;
   margin: 0px auto;
-  background-color: rgba(44,44,44,0.8);
-  height:100vh;
 }
 
 .left_nav{
