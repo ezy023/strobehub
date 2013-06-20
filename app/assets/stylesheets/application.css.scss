@@ -17,10 +17,6 @@ h1, h2, h3 {
   font-weight:normal;
 }
 
-.content h1 {
-  color: #F61595;
-}
-
 h1 {
   font-size:60px;
 }
@@ -476,3 +472,53 @@ form textarea:focus {
 }
 /*Form CSS ends here*/
 
+/* Root Page Styling */
+.hero_title {
+  text-align: center;
+}
+
+.most_popular {
+  margin-top: 30px;
+}
+
+.triple_icon_nav {
+  float: left;
+}
+
+.triple_icon_nav:nth-child(1) {
+  margin-left: 70px;
+}
+
+.triple_icon_nav:nth-child(2) {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.triple_icon_nav:nth-child(2) {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.triple_icons {
+  font-size: 150px;
+}
+
+.home_sub_headers {
+  text-align: center;
+}
+
+.triple_icon_top {
+  height: 200px;
+  vertical-align: middle;
+  width: 200px;
+  margin: 10px;
+  padding: 20px 20px 10px 20px;
+  border: 5px solid white;
+  text-align: center;
+}
+
+.home_page_content {
+  margin-left: 10px;
+  padding-right: -100px;
+  text-align:left;
+}
