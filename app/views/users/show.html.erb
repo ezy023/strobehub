@@ -1,12 +1,14 @@
 <h3><%=@user.username%>'s Profile Page</h3>
-<% unless current_user == @user %>
-  <div id="follow_form">
-    <% if current_user.following?(@user) %>
-      <%= render 'relationships/unfollow' %>
-    <% else %>
-      <%= render 'relationships/follow' %>
-    <% end %>
-  </div>
+<% if current_user %>
+  <% unless current_user == @user %>
+    <div id="follow_form">
+      <% if current_user.following?(@user) %>
+        <%= render 'relationships/unfollow' %>
+      <% else %>
+        <%= render 'relationships/follow' %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= render 'follow_stats' %>
@@ -15,15 +17,17 @@
 <%= render partial: "repo_display" %>
 <%= render partial: "favorites_display" %>
 
-<h4><%= @user.username %>'s Feed</h4>
-<div id="user_feed">
-  <% if @feed_items.empty? %>
-  <span class="blank_feed">You have no activity, start following some people!</span>
-  <% else %>
-    <% @feed_items.each do |item| %>
-      <span class="username_feed"><%= link_to item.user.username, user_path(item.user) %></span>:
-      <span class="respository_name_feed"><%= link_to item.repository.name, repository_version_path(item.repository, item) %></span>
-      <strong><%= time_ago_in_words(item.updated_at) %> ago</strong>
+<% if current_user == @user %>
+  <h4><%= @user.username %>'s Feed</h4>
+  <div id="user_feed">
+    <% if @feed_items.empty? %>
+      <span class="blank_feed">Follow your favorite DJs and view their activity here!</span>
+    <% else %>
+      <% @feed_items.each do |item| %>
+        <span class="username_feed"><%= link_to item.user.username, user_path(item.user) %></span>:
+        <span class="respository_name_feed"><%= link_to item.repository.name, repository_version_path(item.repository, item) %></span>
+        <strong><%= time_ago_in_words(item.updated_at) %> ago</strong>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>

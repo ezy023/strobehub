@@ -61,6 +61,29 @@ describe 'profile page' do
     it 'should list out blank_feed if there is no activity' do
       page.should have_css('span.blank_feed')
     end
-    
+
+  end
+
+  context 'if no user is signed in' do
+    before :each do
+      user = FactoryGirl.create(:user)
+      visit user_path(user)
+    end
+
+    it "should not have a follow button" do
+      page.should_not have_button "Follow"
+    end
+
+    it "should not let you see followers" do
+      click_link "followers"
+      current_path.should eq login_path
+    end
+
+
+    it "should not let you see following" do
+      click_link "following"
+      current_path.should eq login_path
+    end
+
   end
 end

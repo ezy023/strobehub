@@ -31,7 +31,7 @@ $(document).ready(function() {
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mousedown', '.audio_clip', updateDelay);
-    $('#track_list').click(clickRouter)
+    $('ul').on('click',clickRouter)
     $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
@@ -59,7 +59,19 @@ $(document).ready(function() {
         case ('delete_cancel'):
           deleteCancel($(e.target));
           break;
+        case ('show_hide'):
+          showHide($(e.target));
+          break;
       }
+    }
+
+    function showHide(target) {
+      $('.show_hide').toggle(300);
+      getTrackList().slideToggle(300);
+    }
+
+    function getTrackList(){
+      return $('#track_list');
     }
 
     function deleteClick(target){
@@ -115,7 +127,7 @@ $(document).ready(function() {
         var formData = new FormData(form);
         var entry = files[i];
         formData.append("song_file", entry);
-        xhr.open("POST", "http://localhost:3000/tracks", true);
+        xhr.open("POST", "/tracks", true);
         xhr.onload = function(evt){
           createTrack(this.response);
         }
@@ -125,10 +137,9 @@ $(document).ready(function() {
     }
 
     function displayLoader(unique_id){
-      var trackList = document.getElementById('track_list');
       var empty_track_div = document.createElement('div');
       empty_track_div.setAttribute('class', "loading_track track_row");
-      trackList.appendChild(empty_track_div);
+      $('#track_list').prepend(empty_track_div);
     }
 
     function createTrack(url) {

@@ -44,6 +44,7 @@ function ScrollController() {
     var trackWidth = parseInt($('.track_line').css('width'));
     var scrollbarWidth = Math.min(windowWidth * windowWidth / trackWidth, windowWidth);
     $('.scrollbar').width(scrollbarWidth + 'px');
+    $('.scrollbar').height('16px');
     return scrollbarWidth;
   }
 
