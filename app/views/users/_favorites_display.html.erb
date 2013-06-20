@@ -1,5 +1,8 @@
-<div class="favorites">
-	<h2>Favorite Versions</h2>
+<div class='triple_icon_nav'>
+	<h2 class="home_sub_headers">Favorite Versions</h2>
+	<div class="triple_icon_top">
+    <i class="icon-code-fork triple_icons"></i>
+  </div>
 	<ul>
 		<% if @user.favorite_versions.empty? %>
 			<% if current_user == @user %>

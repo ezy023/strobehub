@@ -1,5 +1,8 @@
-<div class="created-repos">
-  <h2>Created Repos</h2>
+<div class='triple_icon_nav'>
+  <h2 class="home_sub_headers">Created Repos</h2>
+  <div class="triple_icon_top">
+    <i class="icon-headphones triple_icons"></i>
+  </div>
   <ul>
     <% if !@user_repos.empty? %>
       <% @user_repos.each do |repo| %>
@@ -15,10 +18,11 @@
   </ul>
 </div>
 
-<br>
-
-<div class="sporked-repos">
-  <h2>Sporked Repos</h2>
+<div class='triple_icon_nav'>
+  <h2 class="home_sub_headers">Sporked Repos</h2>
+  <div class="triple_icon_top">
+    <i class="icon-code-fork triple_icons"></i>
+  </div>
   <ul>
     <% if @sporked_repos.any? %>
       <% @sporked_repos.each do |repo| %>
