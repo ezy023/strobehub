@@ -262,7 +262,7 @@ $(document).ready(function() {
       var currentUser = $('#current_user').html();
       var versionOwner = $('#version_owner').html();
       if (currentUser === versionOwner) {
-        var url = $(this).find('form').attr('action')
+        var url = $(this).find('form').attr('action');
         saveVersion(url);
       } else if (currentUser === "") {
         window.location.href = '/login';
@@ -272,6 +272,7 @@ $(document).ready(function() {
     }
 
     function saveVersion(url) {
+
       $.ajax({
         type: "POST",
         url: url,
