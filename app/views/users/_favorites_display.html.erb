@@ -2,7 +2,11 @@
 	<h2>Favorite Versions</h2>
 	<ul>
 		<% if @user.favorite_versions.empty? %>
-			<li>You don't have any favorites <%=link_to "Click Here", tags_path %> to find some face-melting jams!</li>
+			<% if current_user == @user %>
+				<li>You don't have any favorite repos yet. <%=link_to "Click here", tags_path %> to find some face-melting jams!</li>
+			<% else %>
+				<li><%= @user.username %> has not favorited any repos.</li>
+			<% end %>
 		<% else %>
 			<% @user.favorite_versions.each do |version| %>
 				<li class="version-name"><%= link_to "Version in Repo #{version.repository.name}", repository_version_path(version.repository, version) %> 
