@@ -10,7 +10,7 @@ gem 'pg'
 gem 'carrierwave'
 gem 'json'
 gem 'gravatar_image_tag'
-gem 'fog'
+gem 'fog', '~> 1.3.1'
 gem 'figaro'
 gem 'faker'
 
