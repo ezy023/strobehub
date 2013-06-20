@@ -12,6 +12,7 @@ gem 'json'
 gem 'gravatar_image_tag'
 gem 'fog'
 gem 'figaro'
+gem 'faker'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -37,7 +38,6 @@ group :development do
 end
 
 group :test do
-  gem 'faker'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'shoulda-matchers'
