@@ -5,7 +5,11 @@ function TrackView() {
 
   this.initializeView = function(track){
     var elem = thisView.trackTemplate(track);
-    $('.loading_track').first().replaceWith(elem);
+    if ($('.loading_track').length === 0){
+      $('#track_list').prepend(elem);
+    } else {
+      $('.loading_track').first().replaceWith(elem);
+    }
     thisView.render(track);
     $('.audio_clip').draggable({ axis: "x" });
     $.Topic('TrackView:initializeView').publish();
