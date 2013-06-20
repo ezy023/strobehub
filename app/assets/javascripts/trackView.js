@@ -65,6 +65,10 @@ function TrackView() {
     clearInterval(thisView.intervals[track.index]);
   };
 
+  this.pauseAll = function() {
+    for (i=0; i < 999; i++){clearInterval(i)};
+  }
+
   this.clearClock = function(){
     $('#global_info .minutes').html('00:');
     $('#global_info .seconds').html('00.');
@@ -79,11 +83,12 @@ function TrackView() {
   this.stopAll = function(){
     thisView.clearClock();
     $('.progress_bar').css('left', '0px');
-    for (key in thisView.intervals){clearInterval(thisView.intervals[key])};
+    for (i=0; i < 999; i++){clearInterval(i)};
   };
 
   $.Topic("TrackList:stopAll").subscribe(this.stopAll);
   $.Topic("TrackList:playAll").subscribe(this.play);
+  $.Topic("TrackList:pauseAll").subscribe(this.pauseAll);
   $.Topic("Track:bufferLoaded").subscribe(this.initializeView);
   $.Topic("Track:play").subscribe(this.play);
   $.Topic("Track:pause").subscribe(this.pause);
