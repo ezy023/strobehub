@@ -1,14 +1,14 @@
-<h1>
-  Welcome to StrobeHub
+<h1 class="hero_title">
+  StrobeHub
 </h1>
 
-<h2 style="font-family:'BebasNeueLite', sans-serif; font-size:40px">
-  Take a look at our user mixes or create one yourself!
-</h2>
-
 <div class='most_popular'>
-  <div class='repo_list'>
-    <h2>Popular Mixes:</h2>
+  <div class='triple_icon_nav'>
+    <h2 class="home_sub_headers">Popular Mixes</h2>
+    <div class="triple_icon_top">
+      <i class="icon-microphone triple_icons"></i>
+    </div>
+    <div class="home_page_content">
       <ul>
         <% @repositories.each do |repo| %>
           <li>
@@ -16,10 +16,15 @@
           </li>
         <% end %>
       </ul>
+    </div>
   </div>
 
-  <div class='user_list'>
-    <h2>Popular DJ's</h2>
+  <div class='triple_icon_nav'>
+    <h2 class="home_sub_headers">Popular DJ's</h2>
+    <div class="triple_icon_top">
+      <i class="icon-code-fork triple_icons"></i>
+    </div>
+    <div class="home_page_content">
     <ul>
     <% @users.each do |user| %>
       <li>
@@ -28,10 +33,15 @@
         <% end %>
     </ul>
   </div>
+  </div>
 
 
-  <div class='fav_versions'>
-    <h2>Popular Versions</h2>
+  <div class='triple_icon_nav'>
+    <h2 class="home_sub_headers">Popular Versions</h2>
+    <div class="triple_icon_top">
+      <i class="icon-group triple_icons"></i>
+    </div>
+    <div class="home_page_content">
     <ul>
     <% @versions.each do |version| %>
       <li>
@@ -42,6 +52,7 @@
     </li>
         <% end %>
     </ul>
+  </div>
   </div>
 
 </div>
