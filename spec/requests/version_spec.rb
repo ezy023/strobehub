@@ -61,6 +61,36 @@ describe Version do
 			end
 		end
 
+		describe "no logged in user" do
+			before :each do
+				visit repository_version_path(@repository, @version)
+			end
+
+		  it "shows spork option if user is not logged in" do
+				page.should have_button("Spork this")
+			end
+
+		  it "redirects to login page if spork is clicked" do
+		 	 click_button 'Spork this'
+		 	 current_path.should eq login_path
+		  end
+
+		  it "flashes an error if spork is clicked" do
+		  	click_button 'Spork this'
+		  	expect {flash[:error]}.to_not be_nil
+		  end
+
+		  it "redirects to login page if save is clicked" do
+		  	click_button "SAVE IT"
+		  	current_path.should eq login_path
+		  end
+
+		  it "hides 'favorite' button if no user is signed in" do
+		  	page.should_not have_button 'Favorite'
+		  end
+
+		end
+
 	end
 
 end
