@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="background:url('<%= get_random_image %>') no-repeat center fixed black;">
+<html>
 <head>
 	<title>Strobehub</title>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
@@ -8,7 +8,7 @@
 	<%= csrf_meta_tags %>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 </head>
-<body>
+<body style="background:url('<%= get_random_image %>') no-repeat center fixed black;">
 	<%= render "layouts/navbar" %>
 		<div class='content'>
 
