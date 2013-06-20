@@ -170,7 +170,6 @@ $(document).ready(function() {
       playlist.stopAll(0);
     }
 
-
     function pauseTrack(target) {
       target.html('>');
       target.removeClass();
