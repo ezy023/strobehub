@@ -1,25 +1,34 @@
-<%= form_for @user do |f| %>
-  
-  <br>
-  <%= label_tag :email %><br />
-  <%= f.text_field :email, placeholder: "Email", autofocus: true %>
-  <br>
-  <br>
+<script>
+    $(function(){
+      var $form_inputs =   $('form input');
+      var $rainbow_and_border = $('.rain, .border');
+      /* Used to provide loping animations in fallback mode */
+      $form_inputs.bind('focus', function(){
+        $rainbow_and_border.addClass('end').removeClass('unfocus start');
+      });
+      $form_inputs.bind('blur', function(){
+        $rainbow_and_border.addClass('unfocus start').removeClass('end');
+      });
+      $form_inputs.first().delay(800).queue(function() {
+      $(this).focus();
+      });
+    });
+  </script>
 
-  <%= label_tag :username %><br />
-  <%= f.text_field :username, placeholder: "Username"%>
-  <br>
-  <br>
-
-  <%= label_tag :password %><br />
-  <%= f.password_field :password, placeholder: "Password" %>
-  <br>
-  <br>
-
-  <%= label_tag :password_confirmation %><br/>
-  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
-  <br>
-  <br>
-
-  <%= f.submit "Save" %>
-<% end %>
+<div class="rain">
+  <div class="border start">
+    <%= form_for @user do |f| %>
+      
+      <br>
+      <%= f.text_field :email, placeholder: "Email", autofocus: true %>
+      <br>
+      <%= f.text_field :username, placeholder: "Username"%>
+      <br>
+      <%= f.password_field :password, placeholder: "Password" %>
+      <br>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+      <br>
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+</div>

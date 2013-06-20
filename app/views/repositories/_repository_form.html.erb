@@ -1,21 +1,22 @@
-<%= form_for @repository do |f| %>
-<div class="field">
-  <%= f.label :name %>
-  <br>
-  <%= f.text_field :name, placeholder: "Name", autofocus: true%>
-  <br>
-  <%= f.label :description %>
-  <br>
-  <%= f.text_area :description, :size => '30 x 10', placeholder: "Description" %>
-  <br>
-  <%= f.label :tags %>
-  <br>
-  <% @tags.each do |tag| %>
-    <%= check_box_tag("tag[]", tag.id) %><%= tag.name %>
-  <% end %>
-  <br>
-  <!-- <div class="action"> -->
-  <%= f.submit "Create Repo" %>
-  <!-- </div> -->
+<div class="rain">
+  <div class="border start">
+    <%= form_for @repository do |f| %>
+    <div class="field">
+      <br>
+      <%= f.text_field :name, placeholder: "Name", autofocus: true%>
+      <br>
+      <%= f.text_area :description, :size => '30 x 10', placeholder: "Description" %>
+      <br>
+      <div id="tags">
+        <% @tags.each do |tag| %>
+        <%= check_box_tag("tag[]", tag.id) %><%= tag.name %>
+        <% end %>
+      </div>
+      <br>
+      <!-- <div class="action"> -->
+      <%= f.submit "Create Repo" %>
+      <!-- </div> -->
+    </div>
+    <%end%>
+  </div>
 </div>
-<%end%>
