@@ -208,7 +208,7 @@ div.thin, li.thin {
   background-color: none;
 }
 
-#dropzone {
+#dropzone, #dropzone_disabled {
   width: 890px;
   height: 100px;
   border: 5px solid #DDD;
@@ -217,15 +217,16 @@ div.thin, li.thin {
   text-align: center;
 }
 
-#dropzone h1 {
-  font-size: 40px;
-  line-height: 40px;
+#dropzone h1, #dropzone_disabled h1 {
+  font-size: 50px;
+  line-height: 100px;
   padding: 0;
-}
-
-#dropzone h1 a {
   display: block;
   color: #DDD;
+}
+
+#dropzone form {
+  display: none;
 }
 
 #save_version {

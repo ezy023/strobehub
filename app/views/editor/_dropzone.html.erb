@@ -1,9 +1,15 @@
 <li>
-  <div id="dropzone">
-    <h1><a href="/" class='add_track'>DROP A BEAT </a></h1>
-    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
-      <%= file_field_tag :file %>
-      <%= submit_tag("Upload") %>
-    <% end %>
-  </div>
+	<% if current_user == @version.user %>
+	  <div id="dropzone">
+	    <h1 class='add_track'>[ DROP SOME BEATS ]</h1>
+	    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
+	      <%= file_field_tag :file %>
+	      <%= submit_tag("Upload") %>
+	    <% end %>
+	  </div>
+	 <% else %>
+	 	<div id="dropzone_disabled">
+	 		<h1><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h1>
+	 	</div>
+	 <% end %>
 </li>
