@@ -5,7 +5,8 @@ function TrackView() {
 
   this.initializeView = function(track){
     var elem = thisView.trackTemplate(track);
-    $('ul#track_list').append(elem);
+    $('.loading_track').first().replaceWith(elem);
+    thisView.render(track);
     $('.audio_clip').draggable({ axis: "x" });
     $.Topic('TrackView:initializeView').publish();
   };
@@ -43,6 +44,7 @@ function TrackView() {
     $('h2').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
     $('h3').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
     $('a').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+    // $('.content').css('background-color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
   };
 
   this.play = function(track){

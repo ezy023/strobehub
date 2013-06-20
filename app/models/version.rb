@@ -14,8 +14,10 @@ class Version < ActiveRecord::Base
     new_version = self.dup
     new_version.parent_version_id = self.id
     new_version.save
-    tracks.each do |track|
-      Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => new_version.id)
+    if tracks
+      tracks.each do |track|
+        Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => new_version.id)
+      end
     end
     new_version
   end

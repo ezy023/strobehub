@@ -1,19 +1,39 @@
-<li>
-	<% if current_user == @version.user %>
-	  <div id="dropzone">
-	    <h1 class='add_track'>[ DROP SOME BEATS ]</h1>
+<li class='track_row bottom'>
+  <div class='left'>
+  	<% if true %>
 	    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
 	      <%= file_field_tag :file %>
 	      <%= submit_tag("Upload") %>
 	    <% end %>
-	  </div>
-	 <% elsif !current_user %>
+	  <% else %>
+	  	<p>Choose file</p>
+	  	<p>Upload</p>
+	  <% end %>
+  </div>
+
+  <% if current_user == @version.user %>
+	  <div id="dropzone">
+	    <h1 class='add_track'>[ DROP SOME BEATS ]</h1>
+		</div>
+	<% elsif !current_user %>
 	 	<div id="dropzone_sign_in">
 	 		<h1><%= link_to "[ Sign in to add tracks ]", login_path %></h1>
 	 	</div>
-	 <% else %>
+	<% else %>
 	 	<div id="dropzone_disabled">
-	 		<h1><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h1>
+	 		<h2><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h2>
 	 	</div>
-	 <% end %>
+	<% end %>
+
+  <div class='right'>
+  	<div id="save_version">
+	    <%= form_for( :version,
+	                  :html => { :method => "post" },
+	                  :url => update_version_path(@repository, @version)) do |f|  %>
+	      <%= f.submit "SAVE IT" %>
+	    <% end %>
+	    <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
+ 			<span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
+		</div>
+  </div>
 </li>

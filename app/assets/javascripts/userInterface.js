@@ -31,7 +31,8 @@ $(document).ready(function() {
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mousedown', '.audio_clip', updateDelay);
-    $('#track_list').click(clickRouter)
+    $('#track_list').on('click',clickRouter)
+    $('.control_panel').on('click',clickRouter)
     $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
@@ -43,6 +44,7 @@ $(document).ready(function() {
 
 
     function clickRouter(e){
+
       e.preventDefault();
       switch ($(e.target).attr('class')){
         case ('pause_track'):
@@ -63,7 +65,19 @@ $(document).ready(function() {
         case ('delete_cancel'):
           deleteCancel($(e.target));
           break;
+        case ('show_hide'):
+          showHide($(e.target));
+          break;
       }
+    }
+
+    function showHide(target) {
+      $('.show_hide').toggle(300);
+      getTrackList().slideToggle(300);
+    }
+
+    function getTrackList(){
+      return $('#track_display');
     }
 
     function deleteClick(target){
@@ -114,28 +128,24 @@ $(document).ready(function() {
       var dt = e.dataTransfer;
       var files = dt.files;
       var form = document.getElementById("song_upload");
-
-      var entry;
-
       for (var i = 0; i < files.length; i++) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData(form);
-        entry = files[i];
-        console.log(entry.name);
+        var entry = files[i];
         formData.append("song_file", entry);
-        xhr.open("POST", "http://localhost:3000/tracks", false);
+        xhr.open("POST", "http://localhost:3000/tracks", true);
         xhr.onload = function(evt){
-          audioClosure(xhr)();
-          console.log(xhr.response);
+          createTrack(this.response);
         }
         xhr.send(formData);
+        displayLoader(i);
       }
     }
 
-    function audioClosure(xhr){
-      return function(){
-        createTrack(xhr.response);
-      }
+    function displayLoader(unique_id){
+      var empty_track_div = document.createElement('div');
+      empty_track_div.setAttribute('class', "loading_track track_row");
+      $('#track_list').prepend(empty_track_div);
     }
 
     function createTrack(url) {
@@ -273,7 +283,13 @@ $(document).ready(function() {
 
     function sporkVersion() {
       var url = $('#dropzone_disabled a').attr('href');
-      saveVersion(url).done(function(newPath) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: playlist.toJSONString()
+        }).done(function(newPath) {
         var repoID = newPath.repository_id;
         var versionID = newPath.version_id;
         var url = '/repositories/' + repoID + '/versions/' + versionID;

@@ -1,4 +1,4 @@
-<li class='track_row'>
+<li class='track_row controls'>
   <div class='control_panel'>
     <div id='strobe'>Strobe</div>
     <div id='global_controls'>
@@ -19,5 +19,15 @@
         &nbsp;sec
       </div>
     </div>
+    <a class='show_hide' style='display:none' href="#">
+      [edit]
+    </a>
+    <%= form_tag(favorites_path, :method => 'post', :remote => true, :class => "favorite") do %>
+      <%= hidden_field_tag "version_id", @version.id %>
+      <%= submit_tag "Favorite", {class:'favorite_button'} %>
+    <% end %>
+    <a class='show_hide' href="#">
+      [hide]
+    </a>
   </div>
 </li>
