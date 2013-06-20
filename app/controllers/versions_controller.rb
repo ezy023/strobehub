@@ -13,8 +13,8 @@ class VersionsController < ApplicationController
 
 	def create
 	  version = Version.find(params[:id])
-    new_version = version.clone
-    current_user.versions << new_version
+    new_version = version.spork(params[:tracks]) # sporks the version with saved state
+    current_user.versions << new_version #assigns 
     repository = Repository.find(params[:repository_id])
     if request.xhr?
 			respond_to do |format|

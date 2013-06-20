@@ -2,15 +2,14 @@
   <ul>
     <%= render 'editor/controls' %>
   </ul>
-  <ul id="track_list">
-    <%= render 'editor/scroll' %>
-    <%= render 'editor/dropzone' %>
-  </ul>
-</div>
-
-<div id="save_version">
-  <span id="version_owner" style="visibility:hidden"><%= @version.user.id %></span>
-  <span id="current_user" style="visibility:hidden"><%= current_user.id if current_user %></span>
+  <div id="track_display">
+    <ul id="track_list">
+      <%= render 'editor/scroll' %>
+    </ul>
+    <ul>
+      <%= render 'editor/dropzone' %>
+    </ul>
+  </div>
 </div>
 
 <%= render 'editor/track_template' %>

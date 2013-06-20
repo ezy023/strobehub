@@ -23,12 +23,7 @@ class RepositoriesController < ApplicationController
 	def show
 		@repository = Repository.find(params[:id])
 		@version = Version.find(@repository.master_version_id)
-		tracks = @version.tracks
-		@tags = @repository.tags
-		respond_to do |format|
-			format.html
-			format.json { render json: tracks.to_json(:only => [:id, :url, :offset, :duration, :delay]) }
-		end
+		redirect_to repository_version_path(@repository, @version)
 	end
 
 	def edit
