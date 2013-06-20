@@ -7,8 +7,11 @@
 </h2>
 
 <div class='most_popular'>
-  <div class='repo_list'>
-    <h2>Popular Mixes:</h2>
+  <div class="triple_icon" id='repo_list'>
+    <div class="data_indicator_icon">
+    <h2>Popular Mixes</h2>
+      <i class="icon-microphone" id="icon-microphone"></i>
+    </div>
       <ul>
         <% @repositories.each do |repo| %>
           <li>
@@ -18,8 +21,11 @@
       </ul>
   </div>
 
-  <div class='user_list'>
-    <h2>Popular DJ's</h2>
+  <div class="triple_icon" id='user_list'>
+    <div class="data_indicator_icon">
+      <h2>Popular DJs</h2> 
+      <i class="icon-group" id="icon-group"></i>
+    </div>
     <ul>
     <% @users.each do |user| %>
       <li>
@@ -29,9 +35,11 @@
     </ul>
   </div>
 
-
-  <div class='fav_versions'>
-    <h2>Popular Versions</h2>
+  <div class="triple_icon" id='fav_versions'>
+    <div class="data_indicator_icon">
+      <h2>Popular versions</h2> 
+      <i class="icon-code-fork" id="icon-code-fork"></i>
+    </div>
     <ul>
     <% @versions.each do |version| %>
       <li>

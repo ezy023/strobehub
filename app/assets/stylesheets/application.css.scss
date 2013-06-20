@@ -1,3 +1,4 @@
+
 @font-face{
   font-family:'DS-Digital';
   src:url('DS-DIGI.TTF');
@@ -48,6 +49,7 @@ li {
 }
 
 #container {
+  float:left;
   font-family:'DS-Digital';
 }
 .repo_list {
@@ -55,11 +57,68 @@ li {
   width:500px;
 }
 
-
-.user_list {
-  float:right;
-  width:500px;
+.title {
+  float:left;
+  width:700px;
 }
+
+.tags {
+  float:left;
+  width:200px;
+  padding-top:8px;
+}
+
+.tag a{
+  border: 2px solid #39FF14;
+  padding: 2px 4px;
+  margin: 2px;
+}
+
+.tag-list li {
+  text-align: right;
+}
+
+/* root page styling */
+.most_popular {
+  display: inline;
+}
+
+.triple_icon {
+  float: left;
+  margin: 20px;
+}
+
+.data_indicator_icon {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 50px;
+}
+
+#icon-code-fork {
+  font-size: 150px;
+  color: #39FF14;
+}  
+
+#icon-microphone {
+  font-size: 150px;
+  color: #39FF14;
+}
+
+#icon-group {
+  font-size: 150px;
+  color: #39FF14;
+}
+
+#user_list {
+}
+
+#repo_list {
+}
+
+#fav_version {
+}
+
+/* root page styling */
 
 .content {
   width:1000px;
@@ -78,6 +137,16 @@ li {
   background-color: #2c2c2d;
 }
 
+.description, .versions_list {
+  float:left;
+  width:450px;
+}
+
+.show_page_header {
+  width:900px;
+  float:left;
+}
+
 .user_widget{
   margin:0 auto;
   position:absolute;
@@ -94,9 +163,11 @@ img.gravatar {
   margin: 0px auto;
   width: 900px;
   height: 60px;
-  list-style: none;
 }
 
+.editor {
+
+}
 
 #strobe {
   color:#F61595;
@@ -157,41 +228,34 @@ img.gravatar {
   margin: 0px;
   width: 600px;
   overflow:hidden;
-  background-color: #A9CCFF;
+  background-color: rgba(34,42,67,0.4);
   position:relative;
 }
 
 .scroll_info {
-  color: #04A3FE;
+  background-color: rgba(0,0,0,0.5);
 }
 
 .track_line {
   position:absolute;
-  background-color: #262A43;
+  background-color: rgba(34,42,67,0.8);
 }
 
 .track_controls, .scroll_control {
   width: 150px;
   color: white;
-  background-color: #4A7FCC;
+  background-color: rgba(0,0,0,0.5);
 }
-
 
 .track_info {
   width:148px;
-  font-size: 12px;
+  font-size: 13px;
   color: white;
-  background-color:#55667F;
+  background-color: rgba(0,0,0,0.5);
 }
-
-.scrollbar {
-  background-color: red;
-}
-
 
 .audio_clip {
-  background-color: #CC6236;
-  height: 60px;
+  background-color: orange;
   position: relative;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -212,29 +276,38 @@ div.thin, li.thin {
   background-image: image-url("ajax-loader.gif");
 }
 
-#dropzone {
+.editor.bottom {
   width: 890px;
-  height: 100px;
+  height: 40px;
   border: 5px solid #DDD;
   padding: 0;
   margin: auto;
   text-align: center;
 }
 
-#dropzone h1 {
-  font-size: 40px;
-  line-height: 40px;
-  padding: 0;
+.track_row form{
+  width:150px;
 }
 
-#dropzone h1 a {
-  display: block;
-  color: #DDD;
+.track_row.bottom {
+  height:50px;
+}
+
+#dropzone {
+  width:600px;
+  text-align: center;
 }
 
 #save_version {
   float: right;
   margin-top: 60px;
+}
+
+a.show_hide {
+  font-size: 40px;
+  position:relative;
+  left:250px;
+  top: 10px;
 }
 
 .repo-name a {
@@ -243,6 +316,201 @@ div.thin, li.thin {
   color: #39FF14;
 }
 
-ul.tag-list li {
-  display: inline;
+.scrollbar {
+  border: 2px solid red;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
 }
+
+form.favorite{
+  width:0;
+  height:0;
+}
+
+.favorite_button{
+  background:none;
+  border: 3px solid #39FF14;
+  padding: 2px 4px;
+  margin-top:14px;
+  margin-left:30px;
+  color:white;
+  font-size: 18px;
+  font-family:"BebasNeue", sans-serif;
+}
+
+.user div {
+  float:left;
+  padding: 5px;
+}
+
+/*Form CSS starts here*/
+
+.border, .rain {
+  width: 500px;
+}
+
+.rain {
+   padding: 10px 12px 12px 10px;
+   -moz-box-shadow: 10px 10px 10px rgba(0,0,0,1) inset, -9px -9px 8px rgba(0,0,0,1) inset;
+   -webkit-box-shadow: 8px 8px 8px rgba(0,0,0,1) inset, -9px -9px 8px rgba(0,0,0,1) inset;
+   box-shadow: 8px 8px 8px rgba(0,0,0,1) inset, -9px -9px 8px rgba(0,0,0,1) inset;
+   margin: 100px auto;
+}
+
+.border {
+  padding: 1px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.border,
+.rain,
+.border.start,
+.rain.start{
+  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+  /* Blue-ish Green Fallback for Mozilla */
+  background-image: -moz-linear-gradient(left, #09BA5E 0%, #00C7CE 15%, #3472CF 26%, #00C7CE 48%, #0CCF91 91%, #09BA5E 100%);
+  /* Add "Highlight" Texture to the Animation */
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(1%,rgba(0,0,0,.3)), color-stop(23%,rgba(0,0,0,.1)), color-stop(40%,rgba(255,231,87,.1)), color-stop(61%,rgba(255,231,87,.2)), color-stop(70%,rgba(255,231,87,.1)), color-stop(80%,rgba(0,0,0,.1)), color-stop(100%,rgba(0,0,0,.25)));
+  /* Starting Color */
+  background-color: #39f;
+  /* Just do something for IE-suck */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00BA1B', endColorstr='#00BA1B',GradientType=1 );
+}
+
+/* Non-keyframe fallback animation */
+.border.end,
+.rain.end{
+  -moz-transition-property: background-position;  
+  -moz-transition-duration: 30s;
+  -moz-transition-timing-function: linear;
+  -webkit-transition-property: background-position;  
+  -webkit-transition-duration: 30s;  
+  -webkit-transition-timing-function: linear;
+  -o-transition-property: background-position;  
+  -o-transition-duration: 30s;  
+  -o-transition-timing-function: linear;
+  transition-property: background-position;  
+  transition-duration: 30s;  
+  transition-timing-function: linear;
+  background-position: -5400px 0, -4600px 0, -3800px 0, -3000px 0;  
+}
+
+/* Keyfram-licious animation */
+
+@-webkit-keyframes colors {
+    0% {background-color: #39f;}
+    15% {background-color: #F246C9;}
+    30% {background-color: #4453F2;}
+    45% {background-color: #44F262;}
+    60% {background-color: #F257D4;}
+    75% {background-color: #EDF255;}
+    90% {background-color: #F20006;}
+    100% {background-color: #39f;}
+  }
+  .border,.rain{
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: colors;
+    -webkit-animation-timing-function: ease;
+  }
+
+  /* In-Active State Style */
+.border.unfocus{
+  background: #333 !important;  
+   -moz-box-shadow: 0px 0px 15px rgba(255,255,255,.2);
+   -webkit-box-shadow: 0px 0px 15px rgba(255,255,255,.2);
+   box-shadow: 0px 0px 15px rgba(255,255,255,.2);
+   -webkit-animation-name: none;
+}
+.rain.unfocus{
+  background: #000 !important;  
+  -webkit-animation-name: none;
+}
+
+form {
+  background-color: transparent;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+form label {
+  display: block;
+  padding: 5px 10px 5px 15px;
+  font-size: 11px;
+  color: #777;
+}
+
+form input {
+  display: block;
+  margin: 5px 10px 10px 15px;
+  height: 50px;
+  width: 85%;
+  background: #111;
+  -moz-box-shadow: 0px 0px 4px #000 inset;
+  -webkit-box-shadow: 0px 0px 4px #000 inset;
+  box-shadow: 0px 0px 4px #000 inset;
+  border-radius: 12px;
+  border: 1px solid #000;
+  padding: 5px;
+  color: #444;
+  font-size: 24px;
+}
+
+form textarea {
+  display: block;
+  margin: 5px 10px 10px 15px;
+  width: 85%;
+  background: #111;
+  -moz-box-shadow: 0px 0px 4px #000 inset;
+  -webkit-box-shadow: 0px 0px 4px #000 inset;
+  box-shadow: 0px 0px 4px #000 inset;
+  outline: 1px solid #333;
+  border: 1px solid #000;
+  padding: 5px;
+  color: #444;
+  font-size: 24px;
+}
+
+input[type=checkbox] {
+  float: left;
+  display: inline-block;
+}
+
+form input:focus {
+  outline: none;
+  color: #FFF;
+}
+
+form textarea:focus {
+  outline: none;
+  color: #FFF;
+}
+  input[type="submit"] {
+  color: #999;
+  padding: 5px 10px;
+  float: right;
+  margin: 20px;
+  width: 100px;
+  border: 1px solid #000;
+  font-weight: lighter;
+  -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: #45484d;
+  background: -moz-linear-gradient(top, #222 0%, #111 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222), color-stop(100%,#111));
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#22222', endColorstr='#11111',GradientType=0 );
+  -moz-box-shadow: 0px 1px 1px #000, 0px 1px 0px rgba(255,255,255,.3) inset;
+  -webkit-box-shadow: 0px 1px 1px #000, 0px 1px 0px rgba(255,255,255,.3) inset;
+  box-shadow: 0px 1px 1px #000,0px 1px 0px rgba(255,255,255,.3) inset;
+  text-shadow: 0 1px 1px #000;
+}
+/*Form CSS ends here*/
+
