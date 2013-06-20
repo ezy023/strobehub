@@ -39,7 +39,7 @@ $(document).ready(function() {
     $('#dropzone_disabled').click(function(e) {
       e.preventDefault();
       sporkVersion();
-    })
+    });
 
 
     function clickRouter(e){

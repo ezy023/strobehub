@@ -7,6 +7,10 @@
 	      <%= submit_tag("Upload") %>
 	    <% end %>
 	  </div>
+	 <% elsif !current_user %>
+	 	<div id="dropzone_sign_in">
+	 		<h1><%= link_to "[ Sign in to add tracks ]", login_path %></h1>
+	 	</div>
 	 <% else %>
 	 	<div id="dropzone_disabled">
 	 		<h1><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h1>
