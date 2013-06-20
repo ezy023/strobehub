@@ -3,7 +3,7 @@
 		<h2>
 		  <%= @repository.name %>
 		</h2>
-		<%=  @version.parent_version ? 'Version ' : 'Master version ' %>created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
+		<%=  @version.parent_version ? 'Sporked version ' : 'Master version ' %>created on <%= @version.created_at.to_date %> by <%= @version.user.username %>
 	</div>
 	<div class='tags'>
 		<% @tags.each do |tag| %>

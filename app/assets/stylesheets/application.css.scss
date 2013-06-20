@@ -67,7 +67,7 @@ li {
   padding-top:8px;
 }
 
-.tag a{
+.tag a {
   border: 2px solid #39FF14;
   padding: 2px 4px;
   margin: 2px;
@@ -251,13 +251,31 @@ div.thin, li.thin {
   width:150px;
 }
 
-.track_row.bottom {
-  height:50px;
+.bottom {
+  display: inline-block;
+  height: 100px;
 }
 
-#dropzone {
-  width:600px;
+#dropzone, #dropzone_disabled, #dropzone_sign_in {
+  width: 600px;
+  height: 100px;
   text-align: center;
+}
+
+#dropzone h1, #dropzone_disabled h2, #dropzone_sign_in h1 {
+  font-size: 50px;
+  line-height: 100px;
+  padding: 0;
+  display: block;
+  color: #DDD;
+}
+
+#dropzone_disabled h2 {
+  font-size: 40px;
+}
+
+#dropzone form {
+  display: none;
 }
 
 #save_version {

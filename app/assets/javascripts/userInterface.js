@@ -31,14 +31,20 @@ $(document).ready(function() {
     $(document).on("keyup", keyUpEvent);
     $(document).on("keydown", keyDownEvent);
     $('#track_list').on('mousedown', '.audio_clip', updateDelay);
-    $('ul').on('click',clickRouter)
+    $('#track_list').on('click',clickRouter)
+    $('.control_panel').on('click',clickRouter)
     $('#add_track').click( createTrack );
     $('#play_all').click( playAll );
     $('#stop_all').click( stopAll );
     $('#save_version').submit( checkUser );
+    $('#dropzone_disabled').click(function(e) {
+      e.preventDefault();
+      sporkVersion();
+    });
 
 
     function clickRouter(e){
+
       e.preventDefault();
       switch ($(e.target).attr('class')){
         case ('pause_track'):
@@ -71,7 +77,7 @@ $(document).ready(function() {
     }
 
     function getTrackList(){
-      return $('#track_list');
+      return $('#track_display');
     }
 
     function deleteClick(target){
@@ -256,12 +262,12 @@ $(document).ready(function() {
       var currentUser = $('#current_user').html();
       var versionOwner = $('#version_owner').html();
       if (currentUser === versionOwner) {
-        url = $(this).find('form').attr('action')
+        var url = $(this).find('form').attr('action')
         saveVersion(url);
       } else if (currentUser === "") {
         window.location.href = '/login';
       } else {
-        sporkVersion();
+        sporkVersion(url);
       }
     }
 
@@ -276,8 +282,14 @@ $(document).ready(function() {
     }
 
     function sporkVersion() {
-      var url = $('#spork_version form').attr('action');
-      $.post(url, function(newPath) {
+      var url = $('#dropzone_disabled a').attr('href');
+      $.ajax({
+        type: "POST",
+        url: url,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: playlist.toJSONString()
+        }).done(function(newPath) {
         var repoID = newPath.repository_id;
         var versionID = newPath.version_id;
         var url = '/repositories/' + repoID + '/versions/' + versionID;

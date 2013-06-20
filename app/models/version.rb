@@ -10,13 +10,14 @@ class Version < ActiveRecord::Base
 
   validates :user_id, :repository_id, :presence => true
 
-  def clone
+  def spork(tracks)
     new_version = self.dup
     new_version.parent_version_id = self.id
     new_version.save
-    self.tracks.each do |track|
-      new_track = track.dup
-      new_version.tracks << new_track
+    if tracks
+      tracks.each do |track|
+        Track.create(:url => track["url"], :delay => track["delay"], :offset => track["offset"], :duration => track["duration"], :track_length => track["trackLength"], :version_id => new_version.id)
+      end
     end
     new_version
   end
