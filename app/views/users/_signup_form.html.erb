@@ -14,11 +14,11 @@
       });
     });
   </script>
-
+<div class="flash-form">
 <div class="rain">
   <div class="border start">
     <%= form_for @user do |f| %>
-      
+
       <br>
       <%= f.text_field :email, placeholder: "Email", autofocus: true %>
       <br>
@@ -31,4 +31,5 @@
       <%= f.submit "Save" %>
     <% end %>
   </div>
+</div>
 </div>

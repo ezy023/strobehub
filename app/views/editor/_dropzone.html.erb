@@ -1,4 +1,4 @@
-<li class='track_row bottom'>
+<li class='track_row bottom' style='border-bottom:0;'>
   <div class='left'>
   	<% if true %>
 	    <%= form_tag({ :action => :create,:controller => :tracks}, :id =>"song_upload", :multipart => true) do %>
@@ -11,19 +11,20 @@
 	  <% end %>
   </div>
 
-  <% if current_user == @version.user %>
-	  <div id="dropzone">
-	    <h1 class='add_track'>[ DROP SOME BEATS ]</h1>
-		</div>
-	<% elsif !current_user %>
-	 	<div id="dropzone_sign_in">
-	 		<h1><%= link_to "[ Sign in to add tracks ]", login_path %></h1>
-	 	</div>
-	<% else %>
-	 	<div id="dropzone_disabled">
-	 		<h2><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h2>
-	 	</div>
-	<% end %>
+    <% if current_user == @version.user %>
+      <div id="dropzone">
+        <h1 class='add_track'>[ DROP SOME BEATS ]</h1>
+      </div>
+    <% elsif !current_user %>
+      <div id="dropzone_sign_in">
+        <h1><%= link_to "[ Sign in to add tracks ]", login_path %></h1>
+      </div>
+    <% else %>
+      <div id="dropzone_disabled">
+        <h2><%= link_to "[ Spork this repo to add tracks ]", spork_version_path(@repository, @version) %></h2>
+      </div>
+    <% end %>
+
 
   <div class='right'>
   	<div id="save_version">

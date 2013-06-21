@@ -2,6 +2,7 @@ function TrackView() {
   this.intervals = {};
   this.trackTemplate = _.template($( "script.template" ).html());
   var thisView = this;
+  this.rageStrobe = false;
 
   this.initializeView = function(track){
     var elem = thisView.trackTemplate(track);
@@ -48,14 +49,14 @@ function TrackView() {
     $('h2').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
     $('h3').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
     $('a').css('color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
-    // $('.content').css('background-color', fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
+    $('#container').css('border', '5px solid ' +fiftyShadesOfRage[Math.floor(Math.random() * fiftyShadesOfRage.length)]);
   };
 
   this.play = function(track){
     var startTime = track.startTime;
     var intervalId = setInterval(function(){
       thisView.updateProgressBar(track);
-      // thisView.strobe();
+      if (thisView.rageStrobe){thisView.strobe();}
       thisView.updateGlobalPlayTime();
     }, 40);
     thisView.intervals[track.index] = intervalId;
@@ -86,6 +87,12 @@ function TrackView() {
     for (i=0; i < 999; i++){clearInterval(i)};
   };
 
+  this.rage = function(){
+    thisView.rageStrobe=true;
+    console.log(thisView.rageStrobe);
+  }
+
+  $.Topic("strobe").subscribe(this.rage);
   $.Topic("TrackList:stopAll").subscribe(this.stopAll);
   $.Topic("TrackList:playAll").subscribe(this.play);
   $.Topic("TrackList:pauseAll").subscribe(this.pauseAll);

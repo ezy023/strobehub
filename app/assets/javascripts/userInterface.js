@@ -293,6 +293,10 @@ $(document).ready(function() {
       }
     }
 
+    $('.icon-magic').click(function(){
+      $.Topic('strobe').publish();
+    });
+
     function saveVersion(url) {
 
       $.ajax({
