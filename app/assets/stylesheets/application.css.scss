@@ -3,8 +3,8 @@
   src:url('DS-DIGI.TTF');
 }
 
-body{
-  padding:0;
+body {
+  padding: 10px;
   margin:0;
   color:white;
   font-family:"BebasNeue", sans-serif;
@@ -50,6 +50,7 @@ li {
   float:left;
   font-family:'DS-Digital';
 }
+
 .repo_list {
   float:left;
   width:500px;
@@ -140,10 +141,6 @@ img.gravatar {
   margin: 0px auto;
   width: 900px;
   height: 60px;
-}
-
-.editor {
-
 }
 
 #strobe {
@@ -522,10 +519,11 @@ form textarea:focus {
 
 .triple_icon_nav {
   float: left;
+  display: inline-block;
 }
 
 .triple_icon_nav:nth-child(1) {
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .triple_icon_nav:nth-child(2) {
@@ -537,7 +535,7 @@ form textarea:focus {
   font-size: 150px;
 }
 
-.home_sub_headers {
+.home_sub_headers, {
   text-align: center;
 }
 
@@ -546,7 +544,8 @@ form textarea:focus {
   vertical-align: middle;
   width: 200px;
   margin: 10px;
-  padding: 20px 20px 10px 20px;
+  padding: 20px;
+  padding-bottom: 0px;
   border: 5px solid white;
   text-align: center;
 }
@@ -555,6 +554,69 @@ form textarea:focus {
   margin-left: 10px;
   padding-right: -100px;
   text-align:left;
+}
+
+/* profile page */
+
+.profile {
+  display: inline-block;
+  width: 900px;
+  margin-bottom: 30px;
+}
+
+.profile img {
+  float:left;
+  margin-right: 20px;
+}
+
+.profile h2 {
+  margin-top: -20px;
+  padding-top: 0px;
+  float: left;
+}
+
+.profile_sub_headers {
+  text-align: center;
+  font-size: 30px;
+}
+
+.stats {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+#follow_form {
+  float:left;
+}
+
+#follow_form input {
+  margin: -15px 0 0 20px;
+  width: 90px;
+  height: 30px;
+  font-size: 12px;
+  color: #F61595;
+}
+
+.profile_triple_icon_nav {
+  float: left;
+  display: inline-block;
+}
+
+.profile_triple_icon_nav:nth-child(1) {
+  margin-left: 60px;
+}
+
+.profile_triple_icon_nav:nth-child(2) {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#user_feed {
+}
+
+#user_feed h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .version_listing {
