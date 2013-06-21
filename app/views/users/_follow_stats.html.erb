@@ -4,7 +4,9 @@
     <%= @user.followed_users.count %>
     <span>following</span>
   </a>
+  <br>
   <a href="<%= followers_user_path(@user) %>">
     <%= @user.followers.count %>
     <span>followers</span>
   </a>
+</div>

@@ -2,24 +2,17 @@
   <ul class="nav_links">
   	<li>
       <h2>
-        <%= link_to "Strobe", root_url %>
+        <span id="navbar_title"><%= link_to "Strobehub", root_url %></span>
       </h2>
-
-      <h1>
-        <%= link_to "hub", root_url %>
-      </h1>
     </li>
   </ul>
 
   <div class="user_tools">
-    <br>
-    <h3> <%= link_to "Make a new repo", new_repository_path %></h3>
-      <br>
-    <h3><%= link_to "View all repos", tags_path %></h3>
-     <br>
-     <br>
-    <h3><%= link_to "View all users", users_path %> </h3>
-    <br>
+    <ul id="left_nav_list">
+      <li class="left_nav_list_item"><a href="<%= new_repository_path %>"><i class="icon-music left_nav_icon"></i></a><span class="left_nav_text">Make a new repo<span></li>
+      <li class="left_nav_list_item"><a href="<%= tags_path %>"><i class="icon-cloud left_nav_icon"></i></a><span class="left_nav_text">View all repos<span></li>
+      <li class="left_nav_list_item"><a href="<%= users_path %>"><i class="icon-group left_nav_icon"></i></a><span class="left_nav_text">View all users<span></li>
+    </ul>
   </div>
 
   <div class='user_widget'>
