@@ -11,7 +11,8 @@
     <div class="home_page_content">
       <ul>
         <% @repositories.each do |repo| %>
-          <li>
+          <li class="version_listing">
+          <i class="icon-music"></i>
             <%= link_to repo.name, repo %>
           </li>
         <% end %>
@@ -22,12 +23,13 @@
   <div class='triple_icon_nav'>
     <h2 class="home_sub_headers">Popular DJ's</h2>
     <div class="triple_icon_top">
-      <i class="icon-code-fork triple_icons"></i>
+      <i class="icon-headphones triple_icons"></i>
     </div>
     <div class="home_page_content">
       <ul>
       <% @users.each do |user| %>
-        <li>
+        <li class="version_listing">
+        <i class="icon-user"></i>
          <%= link_to user.username, user %>
         </li>
           <% end %>
@@ -37,18 +39,17 @@
 
 
   <div class='triple_icon_nav'>
-    <h2 class="home_sub_headers">Popular Versions</h2>
+    <h2 class="home_sub_headers" id="hot_versions">Hot Versions</h2>
     <div class="triple_icon_top">
-      <i class="icon-group triple_icons"></i>
+      <i class="icon-fire-extinguisher triple_icons"></i>
     </div>
     <div class="home_page_content">
     <ul>
     <% @versions.each do |version| %>
-      <li>
-       Repo Name: <%=link_to version.repository.name, version.repository %>
-        <li>
-       <%= link_to "Version by #{version.user.username}" ,repository_version_path(version.repository.id, version) %>
-        </li>
+      <li class="version_listing">
+        <i class="icon-code-fork"></i>
+        <span class="version_title"><%=link_to version.repository.name, version.repository %></span>
+        <span class="version_owner"><%= link_to version.user.username ,repository_version_path(version.repository.id, version) %> <%= time_ago_in_words(version.updated_at) %> ago. </span>
     </li>
         <% end %>
     </ul>
