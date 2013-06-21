@@ -40,23 +40,25 @@ function TrackList(context, savedJSON){
 
   this.pauseAll = function(){
     for (i in this.tracks) {
-      this.tracks[i].pause(time);
+      if (!this.tracks[i].deleted){ this.tracks[i].pause()};
     }
+    $.Topic("TrackList:pauseAll").publish();
   };
 
   this.stopAll = function(){
     for (i in this.tracks) {
-      this.tracks[i].stop();
+      if (!this.tracks[i].deleted){ this.tracks[i].stop()};
     }
     for (i in this.timeoutId) { clearTimeout(timeoutId[i]); }
     $.Topic('TrackList:stopAll').publish();
   };
 
   this.resumeAll = function(){
+    var resumeTime = 0;
     for (i in this.tracks) {
-      if (!this.tracks[i].deleted){ this.tracks[i].resume(time); }
+      if (!this.tracks[i].deleted){ this.tracks[i].resume(); }
     }
-    this.setStopTimer(time);
+    this.setStopTimer(resumeTime);
   };
 
   this.playAllAt = function(time){

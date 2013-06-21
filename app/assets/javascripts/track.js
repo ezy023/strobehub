@@ -67,6 +67,7 @@ function Track(options) {
   this.resume = function(){
     var startTime = Math.max((this.pauseTime - this.startTime),0);
     this.playAt(startTime);
+    return startTime;
   };
 
   this.bufferLoaded = function(buffer) {

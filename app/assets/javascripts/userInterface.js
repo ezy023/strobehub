@@ -34,8 +34,6 @@ $(document).ready(function() {
     $('#track_list').on('click',clickRouter)
     $('.control_panel').on('click',clickRouter)
     $('#add_track').click( createTrack );
-    $('#play_all').click( playAll );
-    $('#stop_all').click( stopAll );
     $('#save_version').submit( checkUser );
     $('#dropzone_disabled').click(function(e) {
       e.preventDefault();
@@ -47,6 +45,15 @@ $(document).ready(function() {
 
       e.preventDefault();
       switch ($(e.target).attr('class')){
+        case ('icon-stop'):
+          stopAll();
+          break;
+        case ('icon-play'):
+          playAll();
+          break;
+        case ('icon-pause'):
+          pauseAll();
+          break;
         case ('pause_track'):
           pauseTrack($(e.target));
           break;
@@ -169,13 +176,28 @@ $(document).ready(function() {
     }
 
     function playAll() {
-      playlist.playAllAt(0);
+      playlist.resumeAll(0);
+      $('#play_all').removeClass();
+      $('#play_all').addClass('icon-pause');
+      $('.icon-pause').removeAttr('id');
+      $('.icon-pause').attr('id', 'pause_all');
     }
 
     function stopAll() {
       playlist.stopAll(0);
+      $('#pause_all').removeClass();
+      $('#pause_all').addClass('icon-play');
+      $('.icon-play').removeAttr('id');
+      $('.icon-play').attr('id', 'play_all');
     }
 
+    function pauseAll() {
+      playlist.pauseAll(0);
+      $('#pause_all').removeClass();
+      $('#pause_all').addClass('icon-play');
+      $('.icon-play').removeAttr('id');
+      $('.icon-play').attr('id', 'play_all');
+    }
 
     function pauseTrack(target) {
       target.html('>');
