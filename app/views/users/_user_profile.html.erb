@@ -1,3 +1,18 @@
 <div class="profile">
-  <p><%= gravatar_image_tag @user.email, class:'gravatar' %></p>
+  <%= gravatar_image_tag @user.email, class:'gravatar' %></p>
+	<h2><%=@user.username%>
+		<%= render 'follow_stats' %>
+	</h2>
+
+	<% if current_user %>
+	  <% unless current_user == @user %>
+	    <div id="follow_form">
+	      <% if current_user.following?(@user) %>
+	        <%= render 'relationships/unfollow' %>
+	      <% else %>
+	        <%= render 'relationships/follow' %>
+	      <% end %>
+	    </div>
+	  <% end %>
+	<% end %>
 </div>
