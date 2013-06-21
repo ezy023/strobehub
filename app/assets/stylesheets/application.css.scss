@@ -86,6 +86,20 @@ li {
   margin: 0px auto;
 }
 
+/* navbar styles */
+
+.user_tools {
+  margin-top: 20px;
+}
+
+#left_nav_list li {
+  margin-top: 5px;
+}
+
+.left_nav_text {
+  margin-left: 5px;
+}
+
 .left_nav{
   position: fixed;
   left:0;
@@ -94,6 +108,10 @@ li {
   height:100%;
   width:150px;
   background-color: #2c2c2d;
+}
+
+#navbar_title {
+  font-size: 32px;
 }
 
 .description, .versions_list {
@@ -497,7 +515,7 @@ form textarea:focus {
 }
 
 .most_popular {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .triple_icon_nav {
@@ -505,17 +523,12 @@ form textarea:focus {
 }
 
 .triple_icon_nav:nth-child(1) {
-  margin-left: 70px;
+  margin-left: 60px;
 }
 
 .triple_icon_nav:nth-child(2) {
-  margin-left: 35px;
-  margin-right: 35px;
-}
-
-.triple_icon_nav:nth-child(2) {
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 .triple_icons {
@@ -540,4 +553,16 @@ form textarea:focus {
   margin-left: 10px;
   padding-right: -100px;
   text-align:left;
+}
+
+.version_listing {
+  margin: 15px 0px;
+}
+
+.version_owner {
+  font-size: 12px;
+}
+
+#hot_versions {
+  margin-left: -70px;
 }
