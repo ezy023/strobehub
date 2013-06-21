@@ -16,8 +16,11 @@
 </div>
 <br>
 <br>
-<%= render partial: 'editor/editor' %>
-
+<br>
+<br>
+<div class='editor_container'>
+	<%= render partial: 'editor/editor' %>
+</div>
 <div class='repo_info'>
 	<div class='description'>
 		Description: <%= @repository.description %>
@@ -55,5 +58,4 @@
 		</span>
 	<% end %>
 </h5>
-<!-- make setting so that you can't change the track, just play/pause -->
-
+<i class='icon-magic'></i>
