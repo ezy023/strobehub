@@ -562,6 +562,8 @@ div.flash-form input[type="submit"],  div.new-repo input[type="submit"] {
 .triple_icon_nav {
   float: left;
   display: inline-block;
+  width: 250px;
+  margin: 0px 35px;
 }
 
 .triple_icon_nav:nth-child(1) {
@@ -571,6 +573,12 @@ div.flash-form input[type="submit"],  div.new-repo input[type="submit"] {
 .triple_icon_nav:nth-child(2) {
   margin-left: 25px;
   margin-right: 25px;
+}
+
+.triple_icon_nav:nth-child(3) {
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 200px;
 }
 
 .triple_icons {
@@ -642,6 +650,8 @@ div.flash-form input[type="submit"],  div.new-repo input[type="submit"] {
 .profile_triple_icon_nav {
   float: left;
   display: inline-block;
+  width: 250px;
+  margin: 0px 30px;
 }
 
 .profile_triple_icon_nav:nth-child(1) {
@@ -670,5 +680,5 @@ div.flash-form input[type="submit"],  div.new-repo input[type="submit"] {
 }
 
 #hot_versions {
-  margin-left: -70px;
+  margin-right: -40px;
 }
